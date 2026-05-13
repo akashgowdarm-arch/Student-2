@@ -1,0 +1,3981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Hub - AI-Powered Learning</title>
+    <meta name="description" content="A futuristic AI-powered educational platform for 10th and 12th standard students.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <style>
+:root {
+    --bg-dark: #0a0514;
+    --primary-blue: #3b82f6;
+    --primary-purple: #8b5cf6;
+    --accent-pink: #ec4899;
+    --accent-green: #10b981;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --shadow-glow: 0 0 20px rgba(139, 92, 246, 0.3);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    overflow-x: hidden;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple), var(--accent-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Animated Background */
+.bg-animated {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #130a2a 0%, var(--bg-dark) 100%);
+}
+
+.blob {
+    position: absolute;
+    filter: blur(80px);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: float 20s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+    top: -10%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: rgba(139, 92, 246, 0.4);
+}
+
+.blob-2 {
+    bottom: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: rgba(59, 130, 246, 0.3);
+    animation-delay: -5s;
+}
+
+.blob-3 {
+    top: 40%;
+    left: 40%;
+    width: 400px;
+    height: 400px;
+    background: rgba(236, 72, 153, 0.2);
+    animation-delay: -10s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(100px, 50px) scale(1.1); }
+    100% { transform: translate(-50px, 100px) scale(0.9); }
+}
+
+/* Glassmorphism Utilities */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Forms & Inputs */
+.input-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 1rem;
+    color: var(--text-muted);
+}
+
+.input-wrapper input, .input-wrapper select, .glass-input, .glass-select {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: var(--text-main);
+    font-size: 1rem;
+    outline: none;
+    transition: var(--transition-smooth);
+}
+
+.input-wrapper input:focus, .input-wrapper select:focus, .glass-input:focus, .glass-select:focus {
+    border-color: var(--primary-purple);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+select option {
+    background: var(--bg-dark);
+    color: var(--text-main);
+}
+
+/* Buttons */
+.btn-primary {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: all 0.5s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-secondary {
+    padding: 0.8rem 1.5rem;
+    background: transparent;
+    border: 1px solid var(--primary-purple);
+    border-radius: 12px;
+    color: var(--text-main);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.btn-secondary:hover {
+    background: rgba(139, 92, 246, 0.1);
+}
+
+/* Page Transitions */
+.page {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Login Page --- */
+#login-page {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 450px;
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+.logo-wrapper {
+    margin-bottom: 1rem;
+}
+
+.logo-wrapper i {
+    font-size: 3rem;
+    color: var(--primary-blue);
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.login-card h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.2rem;
+}
+
+.login-card .subtitle {
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+}
+
+/* --- Dashboard Layout --- */
+.glass-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 5, 20, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.nav-brand i {
+    color: var(--primary-purple);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: var(--transition-smooth);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-purple);
+    transition: var(--transition-smooth);
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--text-main);
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+    width: 100%;
+    box-shadow: 0 0 10px var(--primary-purple);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.dashboard-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+/* --- Home Page --- */
+.hero-section {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    padding: 2.5rem 2rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4), inset 0 0 20px rgba(255,255,255,0.05);
+}
+
+.icon-wrapper {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    background: rgba(255,255,255,0.05);
+}
+
+.blue-glow { color: var(--primary-blue); box-shadow: 0 0 20px rgba(59, 130, 246, 0.2); }
+.purple-glow { color: var(--primary-purple); box-shadow: 0 0 20px rgba(139, 92, 246, 0.2); }
+.green-glow { color: var(--accent-green); box-shadow: 0 0 20px rgba(16, 185, 129, 0.2); }
+.pink-glow { color: var(--accent-pink); box-shadow: 0 0 20px rgba(236, 72, 153, 0.2); }
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.card-arrow {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: var(--transition-smooth);
+    color: var(--primary-purple);
+}
+
+.feature-card:hover .card-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* --- General Section Layouts --- */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.section-header h2 i {
+    color: var(--primary-blue);
+}
+
+.filters {
+    display: flex;
+    gap: 1rem;
+}
+
+.glass-input, .glass-select {
+    padding: 0.8rem 1rem;
+    width: auto;
+    min-width: 200px;
+}
+
+/* Content Grids (Videos) */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.video-card {
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.video-thumbnail {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    background: #000;
+}
+
+.video-thumbnail iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.video-info {
+    padding: 1.5rem;
+}
+
+.video-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.video-info p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.channel-tag {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--primary-blue);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Sidebar Layout (Notes & Practice) */
+.layout-sidebar {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.glass-sidebar {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 1.5rem;
+    position: sticky;
+    top: 100px;
+}
+
+.glass-sidebar h3 {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.sidebar-list {
+    list-style: none;
+}
+
+.sidebar-item {
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    color: var(--text-muted);
+}
+
+.sidebar-item:hover {
+    background: rgba(255,255,255,0.05);
+    color: var(--text-main);
+}
+
+.sidebar-item.active {
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--primary-purple);
+    border-left: 3px solid var(--primary-purple);
+}
+
+/* Chapters & Notes Accordion */
+.chapter-card {
+    margin-bottom: 1.5rem;
+}
+
+.chapter-header {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: rgba(255,255,255,0.02);
+    border-radius: 15px;
+    transition: var(--transition-smooth);
+}
+
+.chapter-header:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+.chapter-header h3 {
+    font-size: 1.2rem;
+}
+
+.chapter-content {
+    padding: 0 1.5rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+}
+
+.chapter-card.expanded .chapter-content {
+    max-height: 15000px; /* Increased massively to prevent cutting off long notes */
+    padding: 1.5rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.chapter-card.expanded .chapter-header {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    color: var(--primary-purple);
+}
+
+/* Deep Notes Styling */
+.note-box {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 4px solid var(--primary-blue);
+    transition: var(--transition-smooth);
+}
+
+.note-box:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.note-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.note-header i {
+    font-size: 1.2rem;
+}
+
+.note-header h4 {
+    font-size: 1.15rem;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.note-content {
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.note-content ul, .note-content ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.note-content li {
+    margin-bottom: 0.5rem;
+}
+
+.note-content strong {
+    color: var(--text-main);
+}
+
+/* Specific Types */
+.note-theory {
+    border-left-color: var(--primary-blue);
+}
+.note-theory .note-header i { color: var(--primary-blue); }
+
+.note-formula {
+    border-left-color: var(--primary-purple);
+    background: linear-gradient(90deg, rgba(139, 92, 246, 0.05) 0%, transparent 100%);
+}
+.note-formula .note-header i { color: var(--primary-purple); }
+
+.note-derivation {
+    border-left-color: var(--accent-pink);
+    border: 1px dashed rgba(236, 72, 153, 0.3);
+    border-left: 4px solid var(--accent-pink);
+}
+.note-derivation .note-header i { color: var(--accent-pink); }
+
+.note-numerical {
+    border-left-color: var(--accent-green);
+    background: rgba(16, 185, 129, 0.03);
+}
+.note-numerical .note-header i { color: var(--accent-green); }
+
+.note-mcq {
+    border-left-color: #f59e0b;
+}
+.note-mcq .note-header i { color: #f59e0b; }
+
+.note-board {
+    border-left-color: #ef4444;
+    position: relative;
+}
+.note-board::after {
+    content: 'PYQ';
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+.note-board .note-header i { color: #ef4444; }
+
+/* Sub-components within notes */
+.math-block {
+    display: block;
+    padding: 1rem;
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px;
+    margin: 1rem 0;
+    font-family: 'Courier New', monospace;
+    color: var(--primary-purple);
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.step-block {
+    padding-left: 1rem;
+    border-left: 2px solid rgba(255,255,255,0.1);
+    margin: 1rem 0;
+}
+
+.placeholder-msg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    background: var(--glass-bg);
+    border: 1px dashed var(--glass-border);
+    border-radius: 20px;
+}
+
+/* --- Quiz Page --- */
+.quiz-setup-card {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+}
+
+.progress-container {
+    width: 200px;
+    height: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    margin: 0.5rem 0;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.quiz-timer {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent-pink);
+    padding: 0.8rem 1.5rem;
+    background: rgba(236, 72, 153, 0.1);
+    border-radius: 12px;
+}
+
+.question-card {
+    padding: 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.question-text {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+.options-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.option-btn {
+    padding: 1.2rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: var(--text-main);
+    font-size: 1.1rem;
+    text-align: left;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.option-btn:hover {
+    background: rgba(139, 92, 246, 0.1);
+    border-color: var(--primary-purple);
+}
+
+.option-btn.selected {
+    background: var(--primary-purple);
+    border-color: var(--primary-purple);
+}
+
+.option-btn.correct {
+    background: var(--accent-green);
+    border-color: var(--accent-green);
+}
+
+.option-btn.wrong {
+    background: var(--accent-pink);
+    border-color: var(--accent-pink);
+}
+
+.quiz-actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Result Card */
+.result-card {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+.result-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+    box-shadow: var(--shadow-glow);
+}
+
+.result-circle h2 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.result-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+}
+
+.stat {
+    font-size: 1.2rem;
+}
+
+.text-green { color: var(--accent-green); }
+.text-red { color: var(--accent-pink); }
+
+/* --- Global Search --- */
+.search-dropdown {
+    position: absolute;
+    top: 120%;
+    left: 0;
+    width: 100%;
+    max-width: 350px;
+    background: rgba(15, 10, 30, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1000;
+    padding: 0.5rem;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.search-dropdown.hidden {
+    display: none;
+}
+
+.search-result-item {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: var(--transition-smooth);
+}
+
+.search-result-item:hover {
+    background: rgba(139, 92, 246, 0.1);
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-title {
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 0.2rem;
+}
+
+.search-result-subject {
+    font-size: 0.8rem;
+    color: var(--primary-blue);
+    margin-bottom: 0.8rem;
+}
+
+.search-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.search-action-btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.search-action-btn:hover {
+    background: var(--primary-purple);
+    color: white;
+    border-color: var(--primary-purple);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .layout-sidebar {
+        grid-template-columns: 1fr;
+    }
+    .glass-sidebar {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* In a real app, add a hamburger menu */
+    }
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    .quiz-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
+
+</style>
+</head>
+<body>
+
+    <!-- Animated Background -->
+    <div class="bg-animated">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Main Container for SPA Routing -->
+    <div id="app-container">
+        
+        <!-- PREMIUM ONBOARDING MODAL -->
+        <div id="onboarding-modal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 5, 20, 0.85); backdrop-filter: blur(15px); display: flex; justify-content: center; align-items: center; z-index: 1000;">
+            <div class="glass-card" style="padding: 3rem; width: 90%; max-width: 500px; text-align: center; animation: fadeIn 0.6s ease-out; box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 40px rgba(139, 92, 246, 0.1);">
+                <div style="margin-bottom: 2rem;">
+                    <i class="fa-solid fa-graduation-cap" style="font-size: 3.5rem; background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                    <h2 style="font-size: 2.2rem; margin-top: 1rem; color: white; letter-spacing: -1px;">Welcome to Student Hub</h2>
+                    <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 1.1rem;">Personalize your AI learning experience</p>
+                </div>
+
+                <div class="input-group" style="text-align: left;">
+                    <label for="user-name">Student Name</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-user"></i>
+                        <input type="text" id="user-name" placeholder="Enter your full name" required>
+                    </div>
+                </div>
+
+                <div class="input-group" style="text-align: left;">
+                    <label for="user-state">State / Board</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <select id="user-state" required class="glass-select" style="padding-left: 3.5rem; width: 100%; border-radius: 12px; height: 55px; appearance: none;">
+                            <option value="" disabled selected>Select your state</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                            <option value="Assam">Assam</option>
+                            <option value="Bihar">Bihar</option>
+                            <option value="Chhattisgarh">Chhattisgarh</option>
+                            <option value="Goa">Goa</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Haryana">Haryana</option>
+                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                            <option value="Jharkhand">Jharkhand</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Madhya Pradesh">Madhya Pradesh</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Manipur">Manipur</option>
+                            <option value="Meghalaya">Meghalaya</option>
+                            <option value="Mizoram">Mizoram</option>
+                            <option value="Nagaland">Nagaland</option>
+                            <option value="Odisha">Odisha</option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Sikkim">Sikkim</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Tripura">Tripura</option>
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option value="Uttarakhand">Uttarakhand</option>
+                            <option value="West Bengal">West Bengal</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Jammu & Kashmir">Jammu & Kashmir</option>
+                            <option value="CBSE">CBSE (Central Board)</option>
+                            <option value="ICSE">ICSE (Central Board)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group" style="text-align: left; margin-bottom: 2.5rem;">
+                    <label for="user-class">Standard</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                        <select id="user-class" required class="glass-select" style="padding-left: 3.5rem; width: 100%; border-radius: 12px; height: 55px; appearance: none;">
+                            <option value="" disabled selected>Select your class</option>
+                            <option value="10th">10th Standard</option>
+                            <option value="12th">12th Standard (Science)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button onclick="saveUser()" class="btn-primary" style="padding: 1.2rem; font-size: 1.2rem;">
+                    <span>Launch Dashboard</span>
+                    <i class="fa-solid fa-rocket"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- DASHBOARD LAYOUT -->
+        <div id="dashboard-layout">
+            <!-- Navbar -->
+            <nav class="glass-navbar">
+                <div class="nav-brand" onclick="navigateTo('home')">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span>Student Hub</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#" onclick="navigateTo('home')" class="nav-link active" data-route="home"><i class="fa-solid fa-house"></i> Home</a>
+                    <a href="#" onclick="navigateTo('videos')" class="nav-link" data-route="videos"><i class="fa-solid fa-video"></i> Videos</a>
+                    <a href="#" onclick="navigateTo('notes')" class="nav-link" data-route="notes"><i class="fa-solid fa-book"></i> Notes</a>
+                    <a href="#" onclick="navigateTo('practice')" class="nav-link" data-route="practice"><i class="fa-solid fa-pen-nib"></i> Practice</a>
+                    <a href="#" onclick="navigateTo('quiz')" class="nav-link" data-route="quiz"><i class="fa-solid fa-stopwatch"></i> Quiz</a>
+                    <a href="#" onclick="navigateTo('pyqs')" class="nav-link" data-route="pyqs"><i class="fa-solid fa-file-lines"></i> Previous Year Papers</a>
+                </div>
+                <!-- Global Search -->
+                <div class="global-search-container" style="position: relative; margin: 0 15px; display: flex; align-items: center;">
+                    <div class="search-input-wrapper" style="position: relative;">
+                        <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+                        <input type="text" id="global-search" class="glass-input" placeholder="Search chapters, notes..." autocomplete="off" style="padding-left: 40px; border-radius: 20px; width: 250px; height: 40px; font-size: 0.95rem; transition: all 0.3s ease;">
+                    </div>
+                    <div id="global-search-results" class="search-dropdown hidden">
+                        <!-- Results injected via JS -->
+                    </div>
+                </div>
+                <div class="profile-container" style="position: relative; cursor: pointer; display: flex; align-items: center; gap: 10px;">
+                    <div class="avatar"><i class="fa-regular fa-user"></i></div>
+                    <span id="display-name">Student</span>
+                    <div id="logout-menu" style="display: none; position: absolute; right: 0; top: 50px; background: #2d2d3f; border: 1px solid #444; border-radius: 5px; padding: 10px; z-index: 200; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+                        <button onclick="logout()" style="color: #ff7675; background: none; border: none; cursor: pointer; font-size: 1rem; width: 100%; text-align: center;">Logout</button>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content Area -->
+            <main class="dashboard-content">
+                
+                <!-- HOME PAGE -->
+                <section id="home-page" class="page">
+                    <div class="hero-section">
+                        <h1 class="greeting">Welcome, <span id="hero-user-name" class="gradient-text">Student</span> 👋</h1>
+                        <p>Your personalized AI-powered learning journey starts here.</p>
+                    </div>
+
+                    <div class="feature-grid">
+                        <div class="glass-card feature-card" onclick="navigateTo('videos')">
+                            <div class="icon-wrapper blue-glow"><i class="fa-solid fa-video"></i></div>
+                            <h3>Video Lectures</h3>
+                            <p>Curated YouTube videos for your standard</p>
+                            <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                        </div>
+                        <div class="glass-card feature-card" onclick="navigateTo('notes')">
+                            <div class="icon-wrapper purple-glow"><i class="fa-solid fa-book"></i></div>
+                            <h3>Smart Notes</h3>
+                            <p>Chapter-wise formulas, definitions & summaries</p>
+                            <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                        </div>
+                        <div class="glass-card feature-card" onclick="navigateTo('practice')">
+                            <div class="icon-wrapper green-glow"><i class="fa-solid fa-pen-nib"></i></div>
+                            <h3>Practice Questions</h3>
+                            <p>PYQs, numericals, and important questions</p>
+                            <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                        </div>
+                        <div class="glass-card feature-card" onclick="navigateTo('quiz')">
+                            <div class="icon-wrapper pink-glow"><i class="fa-solid fa-stopwatch"></i></div>
+                            <h3>Interactive Quizzes</h3>
+                            <p>Test your knowledge with timed MCQs</p>
+                            <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                        </div>
+                        <div class="glass-card feature-card" onclick="navigateTo('pyqs')">
+                            <div class="icon-wrapper red-glow" style="background: rgba(255, 82, 82, 0.1); color: #ff5252; box-shadow: 0 0 20px rgba(255, 82, 82, 0.2);"><i class="fa-solid fa-file-lines"></i></div>
+                            <h3>Previous Year Papers</h3>
+                            <p>PYQs of every subject</p>
+                            <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIDEOS PAGE -->
+                <section id="videos-page" class="page hidden">
+                    <div class="section-header">
+                        <h2><i class="fa-solid fa-video"></i> Video Dashboard</h2>
+                        <div class="filters">
+                            <input type="text" id="video-search" class="glass-input" placeholder="Search videos...">
+                            <select id="video-subject-filter" class="glass-select">
+                                <option value="all">All Subjects</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="videos-container" class="content-grid">
+                        <!-- Videos will be injected here via JS -->
+                    </div>
+                </section>
+
+                <!-- NOTES PAGE -->
+                <section id="notes-page" class="page hidden">
+                    <div class="section-header">
+                        <h2><i class="fa-solid fa-book"></i> Smart Notes</h2>
+                    </div>
+                    <div class="layout-sidebar">
+                        <aside class="glass-sidebar" id="notes-sidebar">
+                            <h3>Subjects</h3>
+                            <ul id="notes-subject-list" class="sidebar-list">
+                                <!-- Subjects injected via JS -->
+                            </ul>
+                        </aside>
+                        <div class="content-main" id="notes-content-area">
+                            <div class="placeholder-msg">Select a subject to view chapters</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PRACTICE PAGE -->
+                <section id="practice-page" class="page hidden">
+                    <div class="section-header">
+                        <h2><i class="fa-solid fa-pen-nib"></i> Practice Dashboard</h2>
+                    </div>
+                    <div class="layout-sidebar">
+                        <aside class="glass-sidebar" id="practice-sidebar">
+                            <h3>Subjects</h3>
+                            <ul id="practice-subject-list" class="sidebar-list">
+                                <!-- Subjects injected via JS -->
+                            </ul>
+                        </aside>
+                        <div class="content-main" id="practice-content-area">
+                             <div class="placeholder-msg">Select a subject to practice</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- QUIZ PAGE -->
+                <section id="quiz-page" class="page hidden">
+                    <div id="quiz-setup">
+                        <div class="section-header">
+                            <h2><i class="fa-solid fa-stopwatch"></i> Quiz Setup</h2>
+                        </div>
+                        <div class="glass-card quiz-setup-card">
+                            <div class="input-group">
+                                <label>Select Subject</label>
+                                <select id="quiz-subject" class="glass-select">
+                                    <option value="" disabled selected>Choose Subject</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>Select Chapter</label>
+                                <select id="quiz-chapter" class="glass-select" disabled>
+                                    <option value="" disabled selected>Choose Chapter</option>
+                                </select>
+                            </div>
+                            <button id="start-quiz-btn" class="btn-primary" disabled>Start Quiz</button>
+                        </div>
+                    </div>
+                    
+                    <div id="quiz-active" class="hidden">
+                        <div class="quiz-header glass-card">
+                            <div class="quiz-info">
+                                <h3 id="quiz-title">Subject - Chapter</h3>
+                                <div class="progress-container">
+                                    <div class="progress-bar" id="quiz-progress"></div>
+                                </div>
+                                <span id="quiz-question-count">Question 1/10</span>
+                            </div>
+                            <div class="quiz-timer glass-badge">
+                                <i class="fa-solid fa-clock"></i> <span id="time-left">10:00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card question-card" id="question-container">
+                            <!-- Question injected via JS -->
+                        </div>
+                    </div>
+                    
+                    <div id="quiz-results" class="hidden">
+                        <div class="glass-card result-card">
+                            <div class="result-circle">
+                                <h2 id="result-score">80%</h2>
+                                <p id="result-text">Excellent!</p>
+                            </div>
+                            <div class="result-stats">
+                                <div class="stat"><i class="fa-solid fa-check text-green"></i> <span id="correct-count">8</span> Correct</div>
+                                <div class="stat"><i class="fa-solid fa-xmark text-red"></i> <span id="wrong-count">2</span> Wrong</div>
+                            </div>
+                            <button onclick="resetQuiz()" class="btn-secondary">Try Another Quiz</button>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- PYQS PAGE -->
+                <section id="pyqs-page" class="page hidden">
+                    <div class="section-header">
+                        <h2><i class="fa-solid fa-file-lines"></i> Previous Year Papers</h2>
+                    </div>
+                    <div class="layout-sidebar">
+                        <aside class="glass-sidebar" id="pyqs-sidebar">
+                            <h3>Subjects</h3>
+                            <ul id="pyqs-subject-list" class="sidebar-list">
+                                <!-- Subjects injected via JS -->
+                            </ul>
+                        </aside>
+                        <div class="content-main" id="pyqs-content-area">
+                             <div class="placeholder-msg">Select a subject to view past papers</div>
+                        </div>
+                    </div>
+                </section>
+                
+            </main>
+        </div>
+    </div>
+
+    <script>
+// Sample Database for Student Hub
+
+const db = {
+    standards: {
+        '10th': {
+            subjects: ['Physics', 'Chemistry', 'Biology', 'Mathematics', 'History', 'Geography', 'Political Science', 'Economics', 'English', 'Hindi', 'Kannada']
+        },
+        '12th': {
+            subjects: ['Physics', 'Chemistry', 'Biology', 'Mathematics', 'Computer Science', 'English', 'Kannada']
+        }
+    },
+    
+    // Sample chapters mapped by Standard -> Subject
+    chapters: {
+        '10th': {
+            'Physics': [
+                'Light – Reflection and Refraction', 'Human Eye and Colourful World', 'Electricity', 
+                'Magnetic Effects of Electric Current', 'Sources of Energy'
+            ],
+            'Chemistry': [
+                'Chemical Reactions and Equations', 'Acids, Bases and Salts', 'Metals and Non-Metals', 
+                'Carbon and Its Compounds', 'Periodic Classification of Elements'
+            ],
+            'Biology': [
+                'Life Processes', 'Control and Coordination', 'How do Organisms Reproduce?', 
+                'Heredity and Evolution', 'Our Environment', 'Sustainable Management of Natural Resources'
+            ],
+            'Mathematics': [
+                'Real Numbers', 'Polynomials', 'Pair of Linear Equations in Two Variables', 
+                'Quadratic Equations', 'Arithmetic Progressions', 'Triangles', 'Coordinate Geometry', 
+                'Introduction to Trigonometry', 'Some Applications of Trigonometry', 'Circles', 
+                'Areas Related to Circles', 'Surface Areas and Volumes', 'Statistics', 'Probability'
+            ],
+            'History': [
+                'Rise of Nationalism in Europe', 'Nationalism in India', 'The Making of a Global World', 
+                'The Age of Industrialisation', 'Print Culture and the Modern World'
+            ],
+            'Geography': [
+                'Resources and Development', 'Forest and Wildlife Resources', 'Water Resources', 
+                'Agriculture', 'Minerals and Energy Resources', 'Manufacturing Industries', 
+                'Lifelines of National Economy'
+            ],
+            'Political Science': [
+                'Power Sharing', 'Federalism', 'Gender, Religion and Caste', 'Political Parties', 
+                'Outcomes of Democracy'
+            ],
+            'Economics': [
+                'Development', 'Sectors of Indian Economy', 'Money and Credit', 
+                'Globalisation and Indian Economy', 'Consumer Rights'
+            ],
+            'English': [
+                'A Letter to God', 'Nelson Mandela: Long Walk to Freedom', 'Two Stories about Flying', 
+                'From the Diary of Anne Frank', 'Glimpses of India', 'Mijbil the Otter', 
+                'Madam Rides the Bus', 'The Sermon at Benares', 'The Proposal', 'A Triumph of Surgery', 
+                'The Thief’s Story', 'The Midnight Visitor', 'A Question of Trust', 'Footprints Without Feet', 
+                'The Making of a Scientist', 'The Necklace', 'Bholi', 'The Book that Saved the Earth'
+            ],
+            'Hindi': ['Surdas Ke Pad', 'Ram-Lakshman-Parashuram Samvad'],
+            'Kannada': ['Shabari', 'London Nagari', 'Bhagya Shilpigalu', 'Vyakarana']
+        },
+        '12th': {
+            'Physics': [
+                'Electric Charges and Fields', 'Electrostatic Potential and Capacitance', 'Current Electricity', 
+                'Moving Charges and Magnetism', 'Magnetism and Matter', 'Electromagnetic Induction', 
+                'Alternating Current', 'Electromagnetic Waves', 'Ray Optics and Optical Instruments', 
+                'Wave Optics', 'Dual Nature of Radiation and Matter', 'Atoms', 'Nuclei', 
+                'Semiconductor Electronics', 'Communication Systems'
+            ],
+            'Chemistry': [
+                'Solid State', 'Solutions', 'Electrochemistry', 'Chemical Kinetics', 'Surface Chemistry', 
+                'General Principles and Processes of Isolation of Elements', 'The p-Block Elements', 
+                'The d- and f-Block Elements', 'Coordination Compounds', 'Haloalkanes and Haloarenes', 
+                'Alcohols, Phenols and Ethers', 'Aldehydes, Ketones and Carboxylic Acids', 
+                'Organic Compounds Containing Nitrogen', 'Biomolecules', 'Polymers', 'Chemistry in Everyday Life'
+            ],
+            'Biology': [
+                'Reproduction in Organisms', 'Sexual Reproduction in Flowering Plants', 'Human Reproduction', 
+                'Reproductive Health', 'Principles of Inheritance and Variation', 'Molecular Basis of Inheritance', 
+                'Evolution', 'Human Health and Disease', 'Strategies for Enhancement in Food Production', 
+                'Microbes in Human Welfare', 'Biotechnology: Principles and Processes', 
+                'Biotechnology and its Applications', 'Organisms and Populations', 'Ecosystem', 
+                'Biodiversity and Conservation', 'Environmental Issues'
+            ],
+            'Mathematics': [
+                'Relations and Functions', 'Inverse Trigonometric Functions', 'Matrices', 'Determinants', 
+                'Continuity and Differentiability', 'Applications of Derivatives', 'Integrals', 
+                'Applications of Integrals', 'Differential Equations', 'Vector Algebra', 
+                'Three Dimensional Geometry', 'Linear Programming', 'Probability'
+            ],
+            'Computer Science': ['Python Revision Tour', 'Functions', 'File Handling', 'Data Structures'],
+            'English': [
+                'Romeo and Juliet', 'Too Dear!', 'On Children', 'Everything I Need to Know I Learned in the Forest', 
+                'A Sunny Morning', 'When You Are Old', 'The Gardener', 'To the Foot from its Child', 
+                'Around a Medicinal Creeper', 'The Voter', 'Where There is a Wheel', 'Water', 
+                'Do Not Ask of Me, My Love', 'The Farmer’s Wife', 'Watchman of the Lake'
+            ],
+            'Kannada': [
+                'Vachanagalu', 'Hosaballiya Haadu', 'Saku Geethe', 'Bhoomi Geethe'
+            ]
+        }
+    },
+
+    // Sample Videos (Using embeddable Youtube IDs)
+    videos: [
+        { id: '1', standard: '12th', subject: 'Physics', title: 'Electric Charges & Fields 01', channel: 'Physics Wallah', ytId: '1234567890' }, // Placeholder YT IDs, will use search query embeds or generic placeholders for demo
+        { id: '2', standard: '12th', subject: 'Mathematics', title: 'Relations and Functions L-1', channel: 'Neha Agrawal', ytId: 'abcdefghij' },
+        { id: '3', standard: '10th', subject: 'Science', title: 'Chemical Reactions and Equations', channel: 'LearnoHub', ytId: 'xyz123abc' }
+    ],
+
+    // Sample Notes Content
+    notes: {
+        '12th_Mathematics_Relations and Functions': [
+            {
+                type: 'definition',
+                title: 'Types of Relations',
+                content: 'A relation R in a set A is called: <br>1. Empty relation, if no element of A is related to any element of A.<br>2. Universal relation, if each element of A is related to every element of A.'
+            },
+            {
+                type: 'formula',
+                title: 'Equivalence Relation',
+                content: 'A relation R in a set A is said to be an equivalence relation if R is reflexive, symmetric and transitive.'
+            }
+        ],
+        '12th_Physics_Electric Charges and Fields': [
+            {
+                type: 'theory',
+                title: 'Introduction',
+                content: 'Electrostatics is the branch of physics that deals with electric charges at rest. Charges produce electric forces and electric fields around them.<br><br><strong>Examples:</strong><ul><li>Lightning</li><li>Static electricity</li><li>Attraction of paper by rubbed comb</li></ul><br><strong>This chapter explains:</strong><ul><li>Electric charge</li><li>Coulomb’s law</li><li>Electric field</li><li>Electric dipole</li><li>Electric flux</li><li>Gauss’s law</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '1. Electric Charge',
+                content: 'Electric charge is a physical property responsible for electric force.<br><br><strong>Types of Charges:</strong><ul><li>Positive charge</li><li>Negative charge</li></ul><br><strong>Important Rule:</strong><ul><li>Like charges repel</li><li>Unlike charges attract</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '2. Properties of Charge',
+                content: '<strong>A. Additivity of Charges</strong><br>Total charge is algebraic sum of all charges.<br><br><strong>B. Conservation of Charge</strong><br>Charge can neither be created nor destroyed.<br><br><strong>C. Quantization of Charge</strong><div class="math-block">q = ne</div>Where:<br>q = charge<br>n = integer<br>e = electronic charge<br><br>Electronic charge:<br><div class="math-block">e = 1.6 &times; 10⁻¹⁹ C</div>'
+            },
+            {
+                type: 'formula',
+                title: '3. Coulomb’s Law',
+                content: '“The electrostatic force between two charges is directly proportional to product of charges and inversely proportional to square of distance between them.”<br><br><strong>Formula:</strong><div class="math-block">F = (1 / 4&pi;&epsilon;₀) * (q₁q₂ / r²)</div>Where:<br>F = force<br>q₁ and q₂ = charges<br>r = distance'
+            },
+            {
+                type: 'formula',
+                title: '4. Principle of Superposition',
+                content: 'Total force on charge equals vector sum of individual forces.<br><br><strong>Formula:</strong><div class="math-block">F = F₁ + F₂ + F₃ + ...</div>'
+            },
+            {
+                type: 'theory',
+                title: '5. Electric Field',
+                content: 'Region around charge where another charge experiences force.<br><br><strong>Formula:</strong><div class="math-block">E = F / q</div>Unit: N/C'
+            },
+            {
+                type: 'formula',
+                title: '6. Electric Field Due to Point Charge',
+                content: '<strong>Formula:</strong><div class="math-block">E = (1 / 4&pi;&epsilon;₀) * (q / r²)</div>'
+            },
+            {
+                type: 'theory',
+                title: '7. Electric Field Lines',
+                content: '<strong>Properties:</strong><ul><li>Start from positive charge</li><li>End at negative charge</li><li>Never intersect</li><li>Closer lines indicate stronger field</li></ul>'
+            },
+            {
+                type: 'definition',
+                title: '8. Electric Dipole',
+                content: 'Two equal and opposite charges separated by small distance.<br><br><strong>Dipole Moment</strong><br>Formula:<div class="math-block">p = q &times; 2a</div>Unit: C&middot;m'
+            },
+            {
+                type: 'formula',
+                title: '9. Electric Flux',
+                content: 'Electric flux measures electric field lines passing through surface.<br><br><strong>Formula:</strong><div class="math-block">&phi; = EA cos&theta;</div>Unit: N&middot;m²/C'
+            },
+            {
+                type: 'formula',
+                title: '10. Gauss’s Law',
+                content: '“Total electric flux through closed surface equals charge enclosed divided by &epsilon;₀.”<br><br><strong>Formula:</strong><div class="math-block">&phi; = q / &epsilon;₀</div><strong>Applications:</strong><ul><li>Spherical shell</li><li>Infinite plane sheet</li><li>Infinite line charge</li></ul>'
+            },
+            {
+                type: 'formula',
+                title: 'Important Formulae',
+                content: '<strong>Coulomb’s Law</strong><div class="math-block">F = (1 / 4&pi;&epsilon;₀) * (q₁q₂ / r²)</div><strong>Electric Field</strong><div class="math-block">E = F / q</div><strong>Dipole Moment</strong><div class="math-block">p = q &times; 2a</div>'
+            },
+            {
+                type: 'numerical',
+                title: 'Solved Numerical',
+                content: '<strong>Problem</strong><br>Two charges 2 C and 3 C are separated by 2 m. Find force.<br><br><strong>Solution</strong><br>Using Coulomb’s law:<div class="math-block">F = (1 / 4&pi;&epsilon;₀) * (q₁q₂ / r²)</div><div class="step-block">F = (9 &times; 10⁹ * 2 * 3) / 2²</div><strong>Answer:</strong><br>13.5 &times; 10⁹ N'
+            }
+        ],
+        '12th_Physics_Electrostatic Potential and Capacitance': [
+            {
+                type: 'theory',
+                title: 'Introduction',
+                content: 'This chapter explains electric potential, potential energy, and storage of electric charges using capacitors.<br><br><strong>Applications:</strong><ul><li>Mobile phones</li><li>Camera flash</li><li>Computers</li><li>Electronic circuits</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '1. Electric Potential & 2. Potential Difference',
+                content: '<strong>1. Electric Potential:</strong><br>Electric potential is work done in bringing unit positive charge from infinity to point.<div class="math-block">V = W / q</div>Unit: Volt<br><br><strong>2. Potential Difference:</strong><br>Difference in electric potential between two points.<div class="math-block">&Delta;V = W / q</div>'
+            },
+            {
+                type: 'formula',
+                title: '3. Potential Due to Point Charge',
+                content: '<strong>Formula:</strong><div class="math-block">V = (1 / 4&pi;&epsilon;₀) * (q / r)</div>'
+            },
+            {
+                type: 'theory',
+                title: '4. Equipotential Surface',
+                content: 'Surface having same electric potential at every point.<br><br><strong>Properties:</strong><ul><li>No work done on surface</li><li>Electric field perpendicular to surface</li></ul>'
+            },
+            {
+                type: 'formula',
+                title: '5. Relation Between Electric Field and Potential',
+                content: '<strong>Formula:</strong><div class="math-block">E = - dV / dr</div>'
+            },
+            {
+                type: 'theory',
+                title: '6. Potential Energy',
+                content: 'Energy possessed due to position of charges.<br><br><strong>Formula:</strong><div class="math-block">U = (1 / 4&pi;&epsilon;₀) * (q₁q₂ / r)</div>'
+            },
+            {
+                type: 'formula',
+                title: '7. Electric Dipole Potential',
+                content: '<strong>Formula:</strong><div class="math-block">V = (1 / 4&pi;&epsilon;₀) * (p cos&theta; / r²)</div>'
+            },
+            {
+                type: 'theory',
+                title: '8. Capacitance & 9. Parallel Plate Capacitor',
+                content: '<strong>8. Capacitance:</strong><br>Ability to store charge.<div class="math-block">C = Q / V</div>Unit: Farad<br><br><strong>9. Parallel Plate Capacitor:</strong><br><div class="math-block">C = &epsilon;₀A / d</div>Where:<br>A = area<br>d = distance'
+            },
+            {
+                type: 'theory',
+                title: '10. Dielectric Material',
+                content: 'Insulating material placed between capacitor plates.<br><br><strong>Effects:</strong><ul><li>Increases capacitance</li><li>Reduces electric field</li></ul><br><strong>Modified Formula:</strong><div class="math-block">C = K&epsilon;₀A / d</div>'
+            },
+            {
+                type: 'formula',
+                title: '11. Combination of Capacitors',
+                content: '<strong>Series Combination:</strong><div class="math-block">1/C = 1/C₁ + 1/C₂</div><br><strong>Parallel Combination:</strong><div class="math-block">C = C₁ + C₂</div>'
+            },
+            {
+                type: 'formula',
+                title: '12. Energy Stored in Capacitor',
+                content: '<strong>Formula:</strong><div class="math-block">U = &frac12; CV²</div>'
+            },
+            {
+                type: 'formula',
+                title: 'Important Formulae',
+                content: '<strong>Potential</strong><div class="math-block">V = W / q</div><strong>Capacitance</strong><div class="math-block">C = Q / V</div><strong>Energy</strong><div class="math-block">U = &frac12; CV²</div>'
+            },
+            {
+                type: 'numerical',
+                title: 'Solved Numerical',
+                content: '<strong>Problem</strong><br>A capacitor stores 4 C charge at 2 V. Find capacitance.<br><br><strong>Solution</strong><br>Using:<div class="math-block">C = Q / V</div><div class="step-block">C = 4 / 2</div><strong>Answer:</strong><br>2 F'
+            },
+            {
+                type: 'mcq',
+                title: 'MCQs',
+                content: '<strong>1. SI unit of capacitance:</strong><ul><li>a) Volt</li><li>b) Joule</li><li>c) Farad</li><li>d) Ohm</li></ul><strong>Answer: Farad</strong>'
+            },
+            {
+                type: 'board',
+                title: 'Board Questions',
+                content: '<strong>1 Mark:</strong><ul><li>Define capacitance.</li><li>Define electric potential.</li></ul><strong>2 Marks:</strong><ul><li>Properties of equipotential surfaces.</li><li>Define dielectric.</li></ul><strong>5 Marks:</strong><ul><li>Derive capacitance of parallel plate capacitor.</li><li>Explain energy stored in capacitor.</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: 'Quick Revision Notes & Chapter Summary',
+                content: '<strong>Quick Revision Notes:</strong><ul><li>Potential unit = Volt</li><li>Capacitance unit = Farad</li><li>Dielectric increases capacitance</li></ul><br><strong>Chapter Summary:</strong><br>This chapter explains electric potential, capacitance, capacitors, dielectric materials, and energy storage in capacitors which are important in electronic devices.'
+            }
+        ],
+        '12th_Physics_Current Electricity': [
+            {
+                type: 'theory',
+                title: 'Introduction',
+                content: 'Current electricity deals with the flow of electric charges through conductors. Electricity is used in homes, industries, mobile phones, fans, lights, and computers.<br><br><strong>This chapter explains:</strong><ul><li>Electric current</li><li>Resistance</li><li>Ohm’s law</li><li>Electrical circuits</li><li>Power and energy</li><li>Cells and combinations</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '1. Electric Current & 2. Conventional Current',
+                content: 'Electric current is the rate of flow of electric charge through a conductor.<div class="math-block">I = Q / t</div>Where I = current, Q = charge, t = time. SI Unit: Ampere (A).<br><br><strong>Important Points:</strong><ul><li>1 Ampere means 1 Coulomb charge flows per second.</li><li>Current flows due to movement of electrons.</li></ul><br><strong>2. Conventional Current:</strong><ul><li>Conventional current flows from positive terminal to negative terminal.</li><li>Electrons move from negative to positive terminal.</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '3. Drift Velocity & 4. Current Density',
+                content: 'Free electrons move randomly inside conductors. When electric field is applied, electrons gain average velocity called drift velocity.<div class="math-block">I = nAev_d</div>Where n = number of electrons per unit volume, A = area of conductor, e = electronic charge, v_d = drift velocity.<br><em>Important Note: Drift velocity is very small.</em><br><br><strong>4. Current Density:</strong><br>Current flowing per unit area is called current density.<div class="math-block">J = I / A</div>Unit: A/m²'
+            },
+            {
+                type: 'formula',
+                title: '5. Ohm’s Law',
+                content: '“At constant temperature, current through conductor is directly proportional to potential difference across it.”<br><br><strong>Formula:</strong><div class="math-block">V = IR</div>Where V = voltage, I = current, R = resistance.<br><br><strong>Graph:</strong> V-I graph for ohmic conductor is a straight line.'
+            },
+            {
+                type: 'theory',
+                title: '6. Resistance',
+                content: 'Resistance is opposition offered by conductor to flow of current.<div class="math-block">R = &rho;(L / A)</div>Where &rho; = resistivity, L = length, A = area.<br><br><strong>Factors Affecting Resistance:</strong><ul><li>Length</li><li>Area</li><li>Material</li><li>Temperature</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '7. Resistivity & 8. Conductivity',
+                content: 'Resistivity is resistance of conductor having unit length and unit area. Unit: &Omega;&middot;m<br><strong>Important Points:</strong> Depends on material, independent of size and shape.<br><br><strong>8. Conductivity:</strong><br>Conductivity is reciprocal of resistivity.<div class="math-block">&sigma; = 1 / &rho;</div>Unit: S/m'
+            },
+            {
+                type: 'formula',
+                title: '9. Combination of Resistors',
+                content: '<strong>A. Series Combination:</strong><br>Resistors connected one after another.<div class="math-block">R_{total} = R₁ + R₂ + R₃ + ...</div>Properties: Same current flows, Voltage differs.<br><br><strong>B. Parallel Combination:</strong><br>Resistors connected side by side.<div class="math-block">1/R_{total} = 1/R₁ + 1/R₂ + 1/R₃ + ...</div>Properties: Same voltage, Current differs.'
+            },
+            {
+                type: 'theory',
+                title: '10. Electrical Energy & 11. Electric Power',
+                content: '<strong>10. Electrical Energy:</strong><br>Energy consumed:<div class="math-block">W = VIt</div>Unit: Joule (Commercial Unit: kWh)<br><br><strong>11. Electric Power:</strong><br>Power is rate of consumption of electrical energy.<div class="math-block">P = VI &nbsp;&nbsp;|&nbsp;&nbsp; P = I²R &nbsp;&nbsp;|&nbsp;&nbsp; P = V² / R</div>Unit: Watt'
+            },
+            {
+                type: 'theory',
+                title: '12. Heating Effect of Current',
+                content: 'When current passes through conductor, heat is produced.<br><br><strong>Joule’s Heating Law:</strong><div class="math-block">H = I²Rt</div><strong>Applications:</strong> Heater, Iron box, Geyser, Electric stove.'
+            },
+            {
+                type: 'theory',
+                title: '13. Cells and EMF & 14. Internal Resistance',
+                content: 'Electric cell converts chemical energy into electrical energy.<br><strong>EMF:</strong> Energy supplied per unit charge.<div class="math-block">E = W / Q</div><br><strong>14. Internal Resistance:</strong><br>Resistance inside cell is called internal resistance.<div class="math-block">V = E - Ir</div>'
+            },
+            {
+                type: 'theory',
+                title: '15. Kirchhoff’s Laws',
+                content: '<strong>Kirchhoff’s Current Law:</strong><br>Sum of incoming currents equals outgoing currents.<br><br><strong>Kirchhoff’s Voltage Law:</strong><br>Sum of potential differences in closed loop equals zero.'
+            },
+            {
+                type: 'formula',
+                title: '16. Wheatstone Bridge & 17. Potentiometer',
+                content: '<strong>16. Wheatstone Bridge:</strong><br>Used to find unknown resistance. Condition for balance:<div class="math-block">P / Q = R / S</div><br><strong>17. Potentiometer:</strong><br>Used to compare EMFs accurately. Applications: Compare EMFs, Measure internal resistance.'
+            },
+            {
+                type: 'formula',
+                title: 'Important Formulae',
+                content: '<strong>Current:</strong><div class="math-block">I = Q / t</div><strong>Ohm’s Law:</strong><div class="math-block">V = IR</div><strong>Resistance:</strong><div class="math-block">R = &rho;(L / A)</div><strong>Power:</strong><div class="math-block">P = VI</div>'
+            },
+            {
+                type: 'numerical',
+                title: 'Solved Numerical',
+                content: '<strong>Problem:</strong> A resistor of 5 &Omega; carries 2 A current. Find voltage.<br><br><strong>Solution:</strong><div class="step-block">Using Ohm’s law:</div><div class="math-block">V = IR</div><div class="step-block">Substitute values: V = 5 &times; 2</div><strong>Answer:</strong><br>10 V'
+            },
+            {
+                type: 'mcq',
+                title: 'MCQs',
+                content: '<strong>1. SI unit of current:</strong><ul><li>a) Volt</li><li>b) Watt</li><li>c) Ampere</li><li>d) Ohm</li></ul><strong>Answer: Ampere</strong><br><br><strong>2. Ohm’s law formula:</strong><ul><li>a) P = VI</li><li>b) V = IR</li><li>c) H = I²Rt</li><li>d) I = Q/t</li></ul><strong>Answer: V = IR</strong>'
+            },
+            {
+                type: 'board',
+                title: 'Board Questions',
+                content: '<strong>1 Mark:</strong><ul><li>Define electric current.</li><li>Define resistivity.</li><li>SI unit of resistance.</li></ul><strong>2 Marks:</strong><ul><li>State Ohm’s law.</li><li>Define drift velocity.</li></ul><strong>3 Marks:</strong><ul><li>Explain series combination.</li><li>Explain parallel combination.</li></ul><strong>5 Marks:</strong><ul><li>Derive resistance formula.</li><li>Explain Wheatstone bridge.</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: 'Quick Revision Notes & Chapter Summary',
+                content: '<strong>Quick Revision Notes:</strong><ul><li>Current unit = Ampere</li><li>Resistance unit = Ohm</li><li>Power unit = Watt</li><li>Energy unit = Joule</li><li>Resistivity depends on material</li></ul><br><strong>Chapter Summary:</strong><br>This chapter explains electric current, resistance, Ohm’s law, electrical power, energy, cells, resistor combinations, and circuit laws. These concepts are basic foundations of electrical circuits and electronics.'
+            }
+        ],
+        '12th_Physics_Moving Charges and Magnetism': [
+            {
+                type: 'theory',
+                title: 'Introduction',
+                content: 'Magnetism is produced due to moving electric charges. Whenever electric current flows through conductor, magnetic field is produced around it.<br><br><strong>Applications:</strong><ul><li>Electric motors</li><li>Loudspeakers</li><li>Generators</li><li>MRI machines</li><li>Electromagnets</li></ul><br><strong>This chapter explains:</strong><ul><li>Magnetic field</li><li>Force on moving charges</li><li>Motion in magnetic field</li><li>Biot–Savart law</li><li>Ampere’s law</li><li>Cyclotron</li></ul>'
+            },
+            {
+                type: 'definition',
+                title: '1. Magnetic Field',
+                content: 'Region around magnet or current-carrying conductor where magnetic force can be experienced.<br><br><strong>Symbol:</strong> B<br><strong>SI Unit:</strong> Tesla (T)'
+            },
+            {
+                type: 'formula',
+                title: '2. Magnetic Force on Moving Charge',
+                content: 'A moving charge experiences force in magnetic field.<br><br><strong>Formula:</strong><div class="math-block">F = qvB sin&theta;</div>Where:<br>F = magnetic force<br>q = charge<br>v = velocity<br>B = magnetic field<br>&theta; = angle<br><br><strong>Important Points:</strong><ul><li>Force is maximum at 90&deg;</li><li>Force is zero at 0&deg;</li><li>Direction found using right-hand rule</li></ul>'
+            },
+            {
+                type: 'formula',
+                title: '3. Lorentz Force',
+                content: 'When electric and magnetic fields act together:<br><br><strong>Formula:</strong><div class="math-block">F = q(E + v &times; B)</div>'
+            },
+            {
+                type: 'theory',
+                title: '4. Motion of Charged Particle in Magnetic Field',
+                content: '<strong>A. Circular Motion</strong><br>When particle enters perpendicular to magnetic field, it moves in circular path.<br><br>Radius Formula:<div class="math-block">r = mv / qB</div>Time Period:<div class="math-block">T = 2&pi;m / qB</div>Frequency:<div class="math-block">f = qB / 2&pi;m</div>'
+            },
+            {
+                type: 'theory',
+                title: '5. Helical Motion',
+                content: 'If particle enters magnetic field at angle, it follows helical path.'
+            },
+            {
+                type: 'theory',
+                title: '6. Cyclotron',
+                content: 'Cyclotron is device used to accelerate charged particles.<br><br><strong>Principle:</strong> Charged particles move in circular path inside magnetic field.<br><br><strong>Cyclotron Frequency:</strong><div class="math-block">f = qB / 2&pi;m</div><br><strong>Limitations:</strong><ul><li>Cannot accelerate neutral particles</li><li>Not suitable for very high-speed electrons</li></ul><strong>Applications:</strong> Nuclear research, Medical treatment'
+            },
+            {
+                type: 'formula',
+                title: '7. Magnetic Force on Current-Carrying Conductor',
+                content: '<strong>Formula:</strong><div class="math-block">F = BIL sin&theta;</div>Where B = magnetic field, I = current, L = length.<br>Direction: Fleming’s Left-Hand Rule.'
+            },
+            {
+                type: 'formula',
+                title: '8. Force Between Two Parallel Conductors',
+                content: '<strong>Formula:</strong><div class="math-block">F/L = (&mu;₀ / 2&pi;d) * I₁I₂</div>Where I₁ and I₂ = currents, d = distance.<br><br><strong>Important Points:</strong><ul><li>Same direction currents attract</li><li>Opposite direction currents repel</li></ul>'
+            },
+            {
+                type: 'formula',
+                title: '9. Torque on Current Loop',
+                content: '<strong>Formula:</strong><div class="math-block">&tau; = NIAB sin&theta;</div>Where N = number of turns, I = current, A = area, B = magnetic field.<br><strong>Applications:</strong> Electric motor, Galvanometer.'
+            },
+            {
+                type: 'formula',
+                title: '10. Magnetic Dipole Moment',
+                content: '<strong>Formula:</strong><div class="math-block">M = NIA</div>Unit: A&middot;m²'
+            },
+            {
+                type: 'formula',
+                title: '11. Biot–Savart Law',
+                content: 'Biot–Savart law gives magnetic field due to current element.<br><br><strong>Formula:</strong><div class="math-block">dB = (&mu;₀ / 4&pi;) * (I dl sin&theta; / r²)</div>'
+            },
+            {
+                type: 'formula',
+                title: '12. Magnetic Field Due to Straight Conductor',
+                content: '<strong>Formula:</strong><div class="math-block">B = (&mu;₀ / 2&pi;r) * I</div>Where r = distance from conductor.<br>Direction: Right-hand thumb rule.'
+            },
+            {
+                type: 'formula',
+                title: '13. Magnetic Field at Center of Circular Coil',
+                content: '<strong>Formula:</strong><div class="math-block">B = (&mu;₀ / 2R) * NI</div>Where R = radius.'
+            },
+            {
+                type: 'formula',
+                title: '14. Ampere’s Circuital Law',
+                content: '“The line integral of magnetic field around closed path equals &mu;₀ times enclosed current.”<br><br><strong>Formula:</strong><div class="math-block">&oint; B &middot; dl = &mu;₀I</div><strong>Applications:</strong> Solenoid, Toroid.'
+            },
+            {
+                type: 'theory',
+                title: '15. Solenoid',
+                content: 'Long coil of insulated wire.<br><br><strong>Magnetic Field Inside Solenoid:</strong><div class="math-block">B = &mu;₀nI</div>Where n = turns per unit length.<br><br><strong>Properties:</strong><ul><li>Uniform magnetic field</li><li>Behaves like bar magnet</li></ul>'
+            },
+            {
+                type: 'formula',
+                title: 'Important Formulae',
+                content: '<strong>Magnetic Force:</strong><div class="math-block">F = qvB sin&theta;</div><strong>Radius of Circular Path:</strong><div class="math-block">r = mv / qB</div><strong>Magnetic Field Due to Wire:</strong><div class="math-block">B = (&mu;₀I / 2&pi;r)</div><strong>Torque:</strong><div class="math-block">&tau; = NIAB sin&theta;</div>'
+            },
+            {
+                type: 'numerical',
+                title: 'Solved Numerical',
+                content: '<strong>Problem:</strong> A charge of 2 C moves with velocity 3 m/s perpendicular to magnetic field of 4 T. Find force.<br><br><strong>Solution:</strong><div class="step-block">Using: F = qvB sin&theta;</div><div class="step-block">Since &theta; = 90&deg;</div><div class="step-block">F = 2 &times; 3 &times; 4</div><strong>Answer:</strong><br>24 N'
+            },
+            {
+                type: 'mcq',
+                title: 'MCQs',
+                content: '<strong>1. SI unit of magnetic field:</strong><ul><li>a) Tesla</li><li>b) Volt</li><li>c) Ohm</li><li>d) Joule</li></ul><strong>Answer: Tesla</strong><br><br><strong>2. Device used to accelerate charged particles:</strong><ul><li>a) Transformer</li><li>b) Cyclotron</li><li>c) Motor</li><li>d) Generator</li></ul><strong>Answer: Cyclotron</strong>'
+            },
+            {
+                type: 'board',
+                title: 'Board Questions',
+                content: '<strong>1 Mark:</strong><ul><li>Define magnetic field.</li><li>State Biot–Savart law.</li><li>Define cyclotron.</li></ul><strong>2 Marks:</strong><ul><li>Write limitations of cyclotron.</li><li>State Ampere’s law.</li></ul><strong>3 Marks:</strong><ul><li>Explain force on moving charge.</li><li>Explain solenoid.</li></ul><strong>5 Marks:</strong><ul><li>Derive force between two parallel conductors.</li><li>Explain working of cyclotron.</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: 'Quick Revision Notes & Chapter Summary',
+                content: '<strong>Quick Revision Notes:</strong><ul><li>Magnetic field unit = Tesla</li><li>Same direction currents attract</li><li>Opposite currents repel</li><li>Solenoid produces uniform field</li></ul><br><strong>Chapter Summary:</strong><br>This chapter explains magnetic effects produced by moving charges and current-carrying conductors. It includes magnetic force, cyclotron, Biot–Savart law, Ampere’s law, and solenoids which are important in electromagnetism and electrical devices.'
+            }
+        ],
+        '12th_Physics_Magnetism and Matter': [
+            {
+                type: 'theory',
+                title: 'Introduction',
+                content: 'Magnetism is one of the fundamental properties of matter. Certain materials produce magnetic effects and attract magnetic substances like iron.<br><br><strong>Applications:</strong><ul><li>Compass</li><li>Electric motors</li><li>Transformers</li><li>MRI machines</li><li>Magnetic storage devices</li></ul><br><strong>This chapter explains:</strong><ul><li>Bar magnets</li><li>Magnetic field lines</li><li>Earth’s magnetism</li><li>Magnetic properties of materials</li><li>Dia, para, and ferromagnetism</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '1. Bar Magnet',
+                content: 'A bar magnet is a rectangular permanent magnet having two poles: North pole and South pole.<br><br><strong>Important Properties:</strong><ul><li>Like poles repel</li><li>Unlike poles attract</li><li>Poles always exist in pairs</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '2. Magnetic Field Lines',
+                content: 'Magnetic field lines represent magnetic field around magnet.<br><br><strong>Properties:</strong><ul><li>Outside magnet: North to South</li><li>Inside magnet: South to North</li><li>Never intersect</li><li>Closer lines indicate stronger field</li></ul>'
+            },
+            {
+                type: 'formula',
+                title: '3. Magnetic Dipole Moment',
+                content: 'Strength of magnet is measured using magnetic dipole moment.<br><br><strong>Formula:</strong><div class="math-block">M = m &times; 2l</div>Where M = magnetic dipole moment, m = pole strength, 2l = magnetic length.<br>Unit: A&middot;m²'
+            },
+            {
+                type: 'formula',
+                title: '4. Magnetic Field Due to Bar Magnet',
+                content: '<strong>Axial Position:</strong><div class="math-block">B = (&mu;₀ / 4&pi;) * (2M / r³)</div><br><strong>Equatorial Position:</strong><div class="math-block">B = (&mu;₀ / 4&pi;) * (M / r³)</div>'
+            },
+            {
+                type: 'formula',
+                title: '5. Torque on Magnetic Dipole',
+                content: 'A magnetic dipole experiences torque in magnetic field.<br><br><strong>Formula:</strong><div class="math-block">&tau; = MB sin&theta;</div>Where &tau; = torque, M = magnetic moment, B = magnetic field, &theta; = angle.'
+            },
+            {
+                type: 'theory',
+                title: '6. Earth’s Magnetism',
+                content: 'Earth behaves like a giant magnet.<br><br><strong>Important Terms:</strong><br><strong>A. Magnetic Declination:</strong> Angle between geographic meridian and magnetic meridian.<br><strong>B. Angle of Dip (&delta;):</strong> Angle made by Earth’s magnetic field with horizontal.<br><br><strong>C. Horizontal Component:</strong><div class="math-block">B_H = B cos&delta;</div><strong>D. Vertical Component:</strong><div class="math-block">B_V = B sin&delta;</div>Where B = Earth’s magnetic field.'
+            },
+            {
+                type: 'theory',
+                title: '7. Magnetic Properties of Materials',
+                content: 'Materials behave differently in magnetic field.<br>Three main types: Diamagnetic, Paramagnetic, Ferromagnetic.'
+            },
+            {
+                type: 'theory',
+                title: '8. Diamagnetic Materials',
+                content: 'Weakly repelled by magnetic field.<br><br><strong>Properties:</strong><ul><li>No permanent magnetic dipoles</li><li>Magnetic susceptibility is negative</li></ul><strong>Examples:</strong> Copper, Silver, Bismuth.'
+            },
+            {
+                type: 'theory',
+                title: '9. Paramagnetic Materials',
+                content: 'Weakly attracted by magnetic field.<br><br><strong>Properties:</strong><ul><li>Permanent dipoles exist</li><li>Susceptibility is small positive</li></ul><strong>Examples:</strong> Aluminium, Platinum, Oxygen.'
+            },
+            {
+                type: 'theory',
+                title: '10. Ferromagnetic Materials',
+                content: 'Strongly attracted by magnetic field.<br><br><strong>Properties:</strong><ul><li>Large magnetic domains</li><li>High susceptibility</li><li>Can become permanent magnets</li></ul><strong>Examples:</strong> Iron, Nickel, Cobalt.'
+            },
+            {
+                type: 'definition',
+                title: '11. Curie Temperature & 12. Hysteresis',
+                content: '<strong>11. Curie Temperature:</strong><br>Temperature above which ferromagnetic substance loses magnetic property.<br><br><strong>12. Hysteresis:</strong><br>Lagging of magnetization behind magnetic field is called hysteresis.<br><em>Hysteresis Loop</em> represents relation between magnetic field and magnetization.<br><br><strong>Applications:</strong> Transformer cores, Permanent magnets.'
+            },
+            {
+                type: 'formula',
+                title: 'Important Formulae',
+                content: '<strong>Magnetic Dipole Moment:</strong><div class="math-block">M = m &times; 2l</div><strong>Torque on Dipole:</strong><div class="math-block">&tau; = MB sin&theta;</div><strong>Horizontal Component:</strong><div class="math-block">B_H = B cos&delta;</div><strong>Vertical Component:</strong><div class="math-block">B_V = B sin&delta;</div>'
+            },
+            {
+                type: 'numerical',
+                title: 'Solved Numerical',
+                content: '<strong>Problem:</strong> A magnetic dipole of moment 5 A&middot;m² is placed in magnetic field of 2 T at 90&deg;. Find torque.<br><br><strong>Solution:</strong><div class="step-block">Using: &tau; = MB sin&theta;</div><div class="step-block">&tau; = 5 &times; 2 &times; sin(90&deg;)</div><strong>Answer:</strong><br>10 N&middot;m'
+            },
+            {
+                type: 'mcq',
+                title: 'MCQs',
+                content: '<strong>1. Earth behaves like:</strong><ul><li>a) Electric dipole</li><li>b) Magnetic dipole</li><li>c) Capacitor</li><li>d) Resistor</li></ul><strong>Answer: Magnetic dipole</strong><br><br><strong>2. Ferromagnetic material:</strong><ul><li>a) Copper</li><li>b) Aluminium</li><li>c) Iron</li><li>d) Silver</li></ul><strong>Answer: Iron</strong><br><br><strong>3. Diamagnetic materials are:</strong><ul><li>a) Strongly attracted</li><li>b) Weakly repelled</li><li>c) Neutral</li><li>d) Permanent magnets</li></ul><strong>Answer: Weakly repelled</strong>'
+            },
+            {
+                type: 'board',
+                title: 'Board Questions',
+                content: '<strong>1 Mark:</strong><ul><li>Define angle of dip.</li><li>Define hysteresis.</li><li>Define magnetic dipole moment.</li></ul><strong>2 Marks:</strong><ul><li>Difference between diamagnetic and paramagnetic materials.</li><li>Define Curie temperature.</li></ul><strong>3 Marks:</strong><ul><li>Explain Earth’s magnetism.</li><li>Explain ferromagnetic materials.</li></ul><strong>5 Marks:</strong><ul><li>Explain magnetic properties of materials.</li><li>Explain hysteresis loop and applications.</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: 'Quick Revision Notes & Chapter Summary',
+                content: '<strong>Quick Revision Notes:</strong><ul><li>Earth acts like giant magnet</li><li>Ferromagnetic materials strongly attracted</li><li>Diamagnetic materials weakly repelled</li><li>Torque formula = MB sin&theta;</li></ul><br><strong>Chapter Summary:</strong><br>This chapter explains magnetic properties of matter, Earth’s magnetism, magnetic materials, and magnetic dipoles. These concepts are important in understanding magnetic devices and materials.'
+            }
+        ],
+        '12th_Physics_Electromagnetic Induction': [
+            {
+                type: 'theory',
+                title: 'Introduction',
+                content: 'Electromagnetic induction is the process of producing electric current using changing magnetic field.<br>This phenomenon was discovered by Michael Faraday.<br><br><strong>Applications:</strong><ul><li>Electric generators</li><li>Transformers</li><li>Induction cookers</li><li>Bicycle dynamos</li><li>Wireless charging</li></ul><br><strong>This chapter explains:</strong><ul><li>Magnetic flux</li><li>Faraday’s laws</li><li>Lenz’s law</li><li>Self induction</li><li>Mutual induction</li><li>AC generators</li></ul>'
+            },
+            {
+                type: 'formula',
+                title: '1. Magnetic Flux',
+                content: 'Magnetic flux is the total magnetic field passing through a surface.<br><br><strong>Formula:</strong><div class="math-block">&phi; = BA cos&theta;</div>Where &phi; = magnetic flux, B = magnetic field, A = area, &theta; = angle.<br>Unit: Weber (Wb)'
+            },
+            {
+                type: 'theory',
+                title: '2. Electromagnetic Induction',
+                content: 'The process of inducing emf in conductor due to change in magnetic flux is called electromagnetic induction.<br><br><strong>Methods to Change Magnetic Flux:</strong><ul><li>Change magnetic field</li><li>Change area</li><li>Change angle</li><li>Move conductor in field</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '3. Faraday’s First Law',
+                content: 'Whenever magnetic flux linked with circuit changes, emf is induced.'
+            },
+            {
+                type: 'formula',
+                title: '4. Faraday’s Second Law',
+                content: 'Magnitude of induced emf is equal to rate of change of magnetic flux.<br><br><strong>Formula:</strong><div class="math-block">E = - d&phi; / dt</div>Negative sign indicates direction.'
+            },
+            {
+                type: 'theory',
+                title: '5. Lenz’s Law',
+                content: '“The induced emf always opposes the cause producing it.”<br><br><strong>Importance:</strong><ul><li>Based on conservation of energy</li><li>Gives direction of induced current</li></ul>'
+            },
+            {
+                type: 'formula',
+                title: '6. Motional EMF',
+                content: 'When conductor moves in magnetic field, emf is induced.<br><br><strong>Formula:</strong><div class="math-block">E = Blv</div>Where B = magnetic field, l = length, v = velocity.'
+            },
+            {
+                type: 'theory',
+                title: '7. Eddy Currents',
+                content: 'Induced currents produced in bulk conductor are called eddy currents.<br><br><strong>Applications:</strong> Induction furnace, Electric brakes, Speedometers.<br><strong>Disadvantages:</strong> Energy loss due to heating.'
+            },
+            {
+                type: 'formula',
+                title: '8. Self Induction & 9. Self Inductance of Solenoid',
+                content: '<strong>8. Self Induction:</strong><br>When changing current in coil induces emf in same coil, it is called self induction.<br>Self-Induced EMF:<div class="math-block">E = -L (dI / dt)</div>Where L = self inductance. Unit: Henry (H).<br><br><strong>9. Self Inductance of Solenoid:</strong><div class="math-block">L = (&mu;₀N²A) / l</div>Where N = number of turns, A = area, l = length.'
+            },
+            {
+                type: 'formula',
+                title: '10. Mutual Induction',
+                content: 'When changing current in one coil induces emf in another nearby coil, it is called mutual induction.<br><br><strong>Mutual Induced EMF:</strong><div class="math-block">E = -M (dI / dt)</div>Where M = mutual inductance.'
+            },
+            {
+                type: 'theory',
+                title: '11. AC Generator',
+                content: 'AC generator converts mechanical energy into electrical energy.<br><br><strong>Principle:</strong> Based on electromagnetic induction.<br><strong>Main Parts:</strong> Armature coil, Magnet, Slip rings, Brushes.<br><strong>Working:</strong> Rotating coil changes magnetic flux and induces alternating emf.'
+            },
+            {
+                type: 'formula',
+                title: '12. Energy Stored in Inductor',
+                content: '<strong>Formula:</strong><div class="math-block">U = &frac12; LI²</div>Where U = energy, L = inductance, I = current.'
+            },
+            {
+                type: 'formula',
+                title: 'Important Formulae',
+                content: '<strong>Magnetic Flux:</strong><div class="math-block">&phi; = BA cos&theta;</div><strong>Faraday’s Law:</strong><div class="math-block">E = - d&phi; / dt</div><strong>Motional EMF:</strong><div class="math-block">E = Blv</div><strong>Self-Induced EMF:</strong><div class="math-block">E = -L (dI / dt)</div><strong>Energy Stored:</strong><div class="math-block">U = &frac12; LI²</div>'
+            },
+            {
+                type: 'numerical',
+                title: 'Solved Numerical',
+                content: '<strong>Problem:</strong> A conductor of length 2 m moves with velocity 3 m/s in magnetic field of 4 T. Find induced emf.<br><br><strong>Solution:</strong><div class="step-block">Using: E = Blv</div><div class="step-block">Substitute values: E = 4 &times; 2 &times; 3</div><strong>Answer:</strong><br>24 V'
+            },
+            {
+                type: 'mcq',
+                title: 'MCQs',
+                content: '<strong>1. SI unit of magnetic flux:</strong><ul><li>a) Tesla</li><li>b) Weber</li><li>c) Henry</li><li>d) Volt</li></ul><strong>Answer: Weber</strong><br><br><strong>2. Electromagnetic induction discovered by:</strong><ul><li>a) Newton</li><li>b) Faraday</li><li>c) Einstein</li><li>d) Ohm</li></ul><strong>Answer: Faraday</strong><br><br><strong>3. Lenz’s law is based on:</strong><ul><li>a) Conservation of mass</li><li>b) Conservation of energy</li><li>c) Newton’s law</li><li>d) Gravity</li></ul><strong>Answer: Conservation of energy</strong>'
+            },
+            {
+                type: 'board',
+                title: 'Board Questions',
+                content: '<strong>1 Mark:</strong><ul><li>Define magnetic flux.</li><li>State Faraday’s law.</li><li>Define self induction.</li></ul><strong>2 Marks:</strong><ul><li>State Lenz’s law.</li><li>Define mutual induction.</li></ul><strong>3 Marks:</strong><ul><li>Explain eddy currents.</li><li>Explain AC generator principle.</li></ul><strong>5 Marks:</strong><ul><li>Explain Faraday’s laws.</li><li>Explain AC generator with diagram.</li><li>Derive self inductance of solenoid.</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: 'Quick Revision Notes & Chapter Summary',
+                content: '<strong>Quick Revision Notes:</strong><ul><li>Changing magnetic flux produces emf</li><li>Unit of flux = Weber</li><li>Unit of inductance = Henry</li><li>Lenz’s law gives direction</li><li>Generator works on electromagnetic induction</li></ul><br><strong>Chapter Summary:</strong><br>This chapter explains how changing magnetic fields produce electricity. It includes Faraday’s laws, Lenz’s law, induction, inductors, and generators which are basic principles behind power generation and electrical systems.'
+            }
+        ],
+        '12th_Physics_Alternating Current': [
+            {
+                type: 'theory',
+                title: 'Introduction',
+                content: 'Current that changes its magnitude and direction periodically is called alternating current (AC).<br><br><strong>AC is widely used because:</strong><ul><li>Easy transmission over long distances</li><li>Less power loss</li><li>Voltage can be increased or decreased easily</li></ul><br><strong>Applications:</strong><ul><li>Home electricity supply</li><li>Fans</li><li>Refrigerators</li><li>Air conditioners</li><li>Transformers</li></ul><br><strong>This chapter explains:</strong><ul><li>AC voltage and current</li><li>RMS values</li><li>Reactance</li><li>Impedance</li><li>Transformers</li></ul>'
+            },
+            {
+                type: 'formula',
+                title: '1. Alternating Current & 2. Alternating Voltage',
+                content: 'Alternating current changes direction continuously with time.<br><br><strong>Current Expression:</strong><div class="math-block">I = I₀ sin(&omega;t)</div>Where I = instantaneous current, I₀ = peak current, &omega; = angular frequency, t = time.<br><br><strong>Voltage Expression:</strong><div class="math-block">V = V₀ sin(&omega;t)</div>Where V₀ = maximum voltage.'
+            },
+            {
+                type: 'formula',
+                title: '3. Time Period and Frequency & 4. Angular Frequency',
+                content: '<strong>Time Period (T):</strong> Time taken for one complete cycle.<br><strong>Frequency (f):</strong> Number of cycles per second. Unit: Hertz (Hz).<br><br><strong>Relation:</strong><div class="math-block">f = 1 / T</div><br><strong>4. Angular Frequency:</strong><div class="math-block">&omega; = 2&pi;f</div>Unit: rad/s'
+            },
+            {
+                type: 'formula',
+                title: '5. RMS Value of AC & 6. Average Value of AC',
+                content: 'RMS value gives effective value of AC.<br><br><strong>RMS Current:</strong><div class="math-block">I_{rms} = I₀ / &radic;2</div><strong>RMS Voltage:</strong><div class="math-block">V_{rms} = V₀ / &radic;2</div><em>Important Point: Domestic AC supply is 220 V RMS.</em><br><br><strong>6. Average Value of AC:</strong><br>Average value over full cycle is zero.<br>Over half cycle:<div class="math-block">I_{avg} = 2I₀ / &pi;</div>'
+            },
+            {
+                type: 'theory',
+                title: '7. AC Circuit Containing Resistor',
+                content: 'In pure resistor circuit: Voltage and current are in same phase.<br><br><strong>Power consumed:</strong><div class="math-block">P = VI</div>'
+            },
+            {
+                type: 'formula',
+                title: '8. AC Circuit Containing Inductor',
+                content: 'Inductor opposes change in current.<br><br><strong>Inductive Reactance:</strong><div class="math-block">X_L = &omega;L</div>Where X_L = inductive reactance, L = inductance.<br><em>Important Point: Current lags voltage by 90&deg;.</em>'
+            },
+            {
+                type: 'formula',
+                title: '9. AC Circuit Containing Capacitor',
+                content: 'Capacitor opposes flow of AC.<br><br><strong>Capacitive Reactance:</strong><div class="math-block">X_C = 1 / &omega;C</div>Where C = capacitance.<br><em>Important Point: Current leads voltage by 90&deg;.</em>'
+            },
+            {
+                type: 'formula',
+                title: '10. LCR Series Circuit',
+                content: 'Circuit containing Inductor (L), Capacitor (C), and Resistor (R).<br><br><strong>Impedance (Z):</strong> Opposition offered to AC.<div class="math-block">Z = &radic;[R² + (X_L - X_C)²]</div>'
+            },
+            {
+                type: 'formula',
+                title: '11. Resonance',
+                content: 'Condition when: <span class="math-block">X_L = X_C</span><br>At resonance, current becomes maximum and impedance is minimum.<br><br><strong>Resonant Frequency:</strong><div class="math-block">f = 1 / (2&pi;&radic;LC)</div><strong>Applications:</strong> Radio tuning, TV receivers.'
+            },
+            {
+                type: 'formula',
+                title: '12. Power in AC Circuit & 13. Power Factor',
+                content: '<strong>Average power:</strong><div class="math-block">P = VI cos&phi;</div>Where &phi; = phase angle.<br><br><strong>13. Power Factor:</strong><div class="math-block">cos&phi; = R / Z</div><strong>Important Points:</strong><ul><li>High power factor is desirable.</li><li>Low power factor wastes energy.</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '14. Transformer & 15. Types of Transformers',
+                content: 'Transformer changes AC voltage. <strong>Principle:</strong> Based on mutual induction.<br><br><strong>Types:</strong><ul><li><strong>Step-Up Transformer:</strong> Increases voltage.</li><li><strong>Step-Down Transformer:</strong> Decreases voltage.</li></ul>'
+            },
+            {
+                type: 'formula',
+                title: '16. Transformer Equation',
+                content: '<strong>Formula:</strong><div class="math-block">V_s / V_p = N_s / N_p</div>Where V_s = secondary voltage, V_p = primary voltage, N_s = secondary turns, N_p = primary turns.'
+            },
+            {
+                type: 'formula',
+                title: 'Important Formulae',
+                content: '<strong>RMS Current:</strong><div class="math-block">I_{rms} = I₀ / &radic;2</div><strong>Inductive Reactance:</strong><div class="math-block">X_L = &omega;L</div><strong>Capacitive Reactance:</strong><div class="math-block">X_C = 1 / &omega;C</div><strong>Resonant Frequency:</strong><div class="math-block">f = 1 / (2&pi;&radic;LC)</div>'
+            },
+            {
+                type: 'numerical',
+                title: 'Solved Numerical',
+                content: '<strong>Problem:</strong> Find RMS value of AC having peak current 10 A.<br><br><strong>Solution:</strong><div class="step-block">Using: I_{rms} = I₀ / &radic;2</div><div class="step-block">I_{rms} = 10 / &radic;2</div><strong>Answer:</strong><br>7.07 A'
+            },
+            {
+                type: 'mcq',
+                title: 'MCQs',
+                content: '<strong>1. SI unit of frequency:</strong><ul><li>a) Volt</li><li>b) Watt</li><li>c) Hertz</li><li>d) Tesla</li></ul><strong>Answer: Hertz</strong><br><br><strong>2. Transformer works on:</strong><ul><li>a) Electrolysis</li><li>b) Mutual induction</li><li>c) Heating effect</li><li>d) Reflection</li></ul><strong>Answer: Mutual induction</strong><br><br><strong>3. At resonance:</strong><ul><li>a) Current minimum</li><li>b) Impedance maximum</li><li>c) Current maximum</li><li>d) Voltage zero</li></ul><strong>Answer: Current maximum</strong>'
+            },
+            {
+                type: 'board',
+                title: 'Board Questions',
+                content: '<strong>1 Mark:</strong><ul><li>Define RMS value.</li><li>Define resonance.</li><li>Define power factor.</li></ul><strong>2 Marks:</strong><ul><li>Difference between AC and DC.</li><li>Define inductive reactance.</li></ul><strong>3 Marks:</strong><ul><li>Explain resonance.</li><li>Explain transformer principle.</li></ul><strong>5 Marks:</strong><ul><li>Explain LCR circuit.</li><li>Derive RMS value of AC.</li><li>Explain transformer with diagram.</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: 'Quick Revision Notes & Chapter Summary',
+                content: '<strong>Quick Revision Notes:</strong><ul><li>AC changes direction periodically</li><li>RMS value = effective value</li><li>Transformer works on mutual induction</li><li>Resonance &rarr; maximum current</li></ul><br><strong>Chapter Summary:</strong><br>This chapter explains alternating current, reactance, resonance, impedance, and transformers. AC is the basis of electrical power transmission and household electricity supply.'
+            }
+        ],
+        '12th_Physics_Electromagnetic Waves': [
+            {
+                type: 'theory',
+                title: 'Introduction',
+                content: 'Electromagnetic waves are waves produced due to oscillating electric and magnetic fields.<br><br>These waves do not require medium for propagation and can travel through vacuum.<br><br><strong>Examples:</strong><ul><li>Radio waves</li><li>Microwaves</li><li>Infrared rays</li><li>Visible light</li><li>X-rays</li></ul><br><strong>This chapter explains:</strong><ul><li>Nature of electromagnetic waves</li><li>Electromagnetic spectrum</li><li>Properties and applications</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '1. Electromagnetic Waves',
+                content: 'Electromagnetic waves consist of:<ul><li>Oscillating electric field</li><li>Oscillating magnetic field</li></ul><br>Both fields are:<ul><li>Perpendicular to each other</li><li>Perpendicular to direction of propagation</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '2. Maxwell’s Theory',
+                content: 'James Clerk Maxwell predicted existence of electromagnetic waves.<br><br><strong>According to Maxwell:</strong><ul><li>Changing electric field produces magnetic field.</li><li>Changing magnetic field produces electric field.</li></ul>Thus electromagnetic waves are produced.'
+            },
+            {
+                type: 'theory',
+                title: '3. Nature of Electromagnetic Waves',
+                content: '<strong>Properties</strong><ul><li>Transverse waves</li><li>Do not require medium</li><li>Travel with speed of light</li><li>Carry energy and momentum</li><li>Undergo reflection and refraction</li></ul>'
+            },
+            {
+                type: 'formula',
+                title: '4. Speed of Electromagnetic Waves',
+                content: '<strong>Formula:</strong><div class="math-block">c = 1 / &radic;(&mu;₀&epsilon;₀)</div>Where:<br>c = speed of light<br>&mu;₀ = permeability of free space<br>&epsilon;₀ = permittivity of free space<br><br><strong>Value:</strong><div class="math-block">c = 3 &times; 10⁸ m/s</div>'
+            },
+            {
+                type: 'theory',
+                title: '5. Electromagnetic Spectrum',
+                content: 'Arrangement of electromagnetic waves according to wavelength or frequency.<br><br><strong>Order:</strong><ul><li>Radio waves</li><li>Microwaves</li><li>Infrared rays</li><li>Visible light</li><li>Ultraviolet rays</li><li>X-rays</li><li>Gamma rays</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '6. Radio Waves',
+                content: '<strong>Properties</strong><ul><li>Longest wavelength</li><li>Lowest frequency</li></ul><br><strong>Applications</strong><ul><li>Radio communication</li><li>TV broadcasting</li><li>Mobile communication</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '7. Microwaves',
+                content: '<strong>Applications</strong><ul><li>Microwave oven</li><li>Radar systems</li><li>Satellite communication</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '8. Infrared Rays',
+                content: 'Produced by hot bodies.<br><br><strong>Applications</strong><ul><li>Remote controls</li><li>Night vision</li><li>Heat therapy</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '9. Visible Light',
+                content: 'Only part visible to human eye.<br><br><strong>Wavelength Range</strong><br>400 nm to 700 nm<br><br><strong>Colors</strong><br>VIBGYOR:<ul><li>Violet</li><li>Indigo</li><li>Blue</li><li>Green</li><li>Yellow</li><li>Orange</li><li>Red</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '10. Ultraviolet Rays',
+                content: '<strong>Properties</strong><ul><li>Higher frequency than visible light</li></ul><br><strong>Applications</strong><ul><li>Sterilization</li><li>Detecting fake notes</li><li>Water purification</li></ul><br><strong>Harmful Effects</strong><ul><li>Skin damage</li><li>Eye problems</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '11. X-Rays',
+                content: 'Discovered by Wilhelm Röntgen.<br><br><strong>Applications</strong><ul><li>Medical imaging</li><li>Airport security</li><li>Detecting fractures</li></ul><br><strong>Harmful Effects</strong><ul><li>Tissue damage</li><li>Cancer risk</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '12. Gamma Rays',
+                content: 'Highest frequency electromagnetic waves.<br><br><strong>Applications</strong><ul><li>Cancer treatment</li><li>Sterilization of medical tools</li></ul><br><strong>Properties</strong><ul><li>Highly penetrating</li><li>Highly energetic</li></ul>'
+            },
+            {
+                type: 'formula',
+                title: '13. Wave Relation',
+                content: 'Relation between speed, frequency, and wavelength:<div class="math-block">c = &nu;&lambda;</div>Where:<br>c = speed of light<br>&nu; = frequency<br>&lambda; = wavelength'
+            },
+            {
+                type: 'formula',
+                title: '14. Displacement Current',
+                content: 'Changing electric field behaves like current.<br><br><strong>Formula:</strong><div class="math-block">I_d = &epsilon;₀ (d&Phi;_E / dt)</div>'
+            },
+            {
+                type: 'formula',
+                title: 'Important Formulae',
+                content: '<strong>Speed of EM Waves</strong><div class="math-block">c = 1 / &radic;(&mu;₀&epsilon;₀)</div><strong>Wave Relation</strong><div class="math-block">c = &nu;&lambda;</div><strong>Displacement Current</strong><div class="math-block">I_d = &epsilon;₀ (d&Phi;_E / dt)</div>'
+            },
+            {
+                type: 'numerical',
+                title: 'Solved Numerical',
+                content: '<strong>Problem</strong><br>An electromagnetic wave has frequency 5 &times; 10¹⁴ Hz. Find wavelength.<br><br><strong>Solution</strong><br>Using:<div class="math-block">c = &nu;&lambda;</div><div class="step-block">Substitute values:</div><div class="step-block">&lambda; = c / &nu;</div><div class="step-block">&lambda; = (3 &times; 10⁸) / (5 &times; 10¹⁴)</div><strong>Answer:</strong><br>6 &times; 10⁻⁷ m'
+            },
+            {
+                type: 'mcq',
+                title: 'MCQs',
+                content: '<strong>1. Electromagnetic waves are:</strong><ul><li>a) Longitudinal</li><li>b) Transverse</li><li>c) Stationary</li><li>d) Mechanical</li></ul><strong>Answer: Transverse</strong><br><br><strong>2. Fastest electromagnetic waves:</strong><ul><li>a) Radio waves</li><li>b) Light</li><li>c) X-rays</li><li>d) All travel at same speed</li></ul><strong>Answer: All travel at same speed</strong><br><br><strong>3. Highest frequency waves:</strong><ul><li>a) Radio waves</li><li>b) Microwaves</li><li>c) Gamma rays</li><li>d) Infrared rays</li></ul><strong>Answer: Gamma rays</strong>'
+            },
+            {
+                type: 'board',
+                title: 'Important Board Questions',
+                content: '<strong>1 Mark</strong><ul><li>Define electromagnetic waves.</li><li>Define electromagnetic spectrum.</li><li>Write speed of light.</li></ul><strong>2 Marks</strong><ul><li>Properties of EM waves.</li><li>Applications of X-rays.</li></ul><strong>3 Marks</strong><ul><li>Explain electromagnetic spectrum.</li><li>Explain ultraviolet rays.</li></ul><strong>5 Marks</strong><ul><li>Explain Maxwell’s theory.</li><li>Explain electromagnetic spectrum with applications.</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: 'Quick Revision Notes & Chapter Summary',
+                content: '<strong>Quick Revision Notes</strong><ul><li>EM waves do not require medium</li><li>Speed of light = 3 &times; 10⁸ m/s</li><li>EM waves are transverse</li><li>Gamma rays have highest frequency</li><li>Radio waves have longest wavelength</li></ul><br><strong>Chapter Summary</strong><br>This chapter explains electromagnetic waves, Maxwell’s theory, and the electromagnetic spectrum. Different EM waves have different frequencies and applications in communication, medicine, and technology.'
+            }
+        ],
+        '12th_Physics_Ray Optics and Optical Instruments': [
+            {
+                type: 'theory',
+                title: 'Introduction',
+                content: 'Optics is the branch of physics that studies behavior of light.<br><br><strong>Ray optics explains:</strong><ul><li>Reflection</li><li>Refraction</li><li>Mirrors</li><li>Lenses</li><li>Optical instruments</li></ul><br><strong>Applications:</strong><ul><li>Cameras</li><li>Microscopes</li><li>Telescopes</li><li>Spectacles</li><li>Periscopes</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '1. Reflection of Light',
+                content: 'When light strikes surface and returns back, it is called reflection.<br><br><strong>Laws of Reflection</strong><ul><li>Angle of incidence = angle of reflection</li><li>Incident ray, reflected ray, and normal lie in same plane</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '2. Spherical Mirrors',
+                content: 'Two types:<ul><li>Concave mirror</li><li>Convex mirror</li></ul>'
+            },
+            {
+                type: 'definition',
+                title: '3. Important Terms',
+                content: '<strong>Pole (P)</strong><br>Center of mirror surface.<br><br><strong>Principal Axis</strong><br>Straight line passing through pole and center of curvature.<br><br><strong>Radius of Curvature (R)</strong><br>Radius of sphere from which mirror is formed.<br><br><strong>Focal Length (f)</strong><br>Relation:<div class="math-block">f = R / 2</div>'
+            },
+            {
+                type: 'formula',
+                title: '4. Mirror Formula',
+                content: '<strong>Formula:</strong><div class="math-block">1/f = 1/v + 1/u</div>Where:<br>f = focal length<br>v = image distance<br>u = object distance'
+            },
+            {
+                type: 'formula',
+                title: '5. Magnification in Mirrors',
+                content: '<strong>Formula:</strong><div class="math-block">m = -v / u</div>Where:<br>m = magnification<br><br><strong>Important Points</strong><ul><li>Positive magnification &rarr; erect image</li><li>Negative magnification &rarr; inverted image</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '6. Refraction of Light',
+                content: 'Bending of light when it passes from one medium to another.'
+            },
+            {
+                type: 'formula',
+                title: '7. Laws of Refraction',
+                content: 'Also called Snell’s law.<br><br><strong>Formula:</strong><div class="math-block">n₁ sin i = n₂ sin r</div>Where:<br>n₁, n₂ = refractive indices<br>i = angle of incidence<br>r = angle of refraction'
+            },
+            {
+                type: 'formula',
+                title: '8. Refractive Index',
+                content: '<strong>Formula:</strong><div class="math-block">n = c / v</div>Where:<br>c = speed of light in vacuum<br>v = speed in medium'
+            },
+            {
+                type: 'theory',
+                title: '9. Total Internal Reflection',
+                content: 'When light travels from denser to rarer medium and angle of incidence exceeds critical angle, light reflects completely.<br><br><strong>Conditions:</strong><ul><li>Light must travel from denser to rarer medium</li><li>Angle &gt; critical angle</li></ul><br><strong>Applications:</strong><ul><li>Optical fiber</li><li>Mirage</li><li>Diamond sparkle</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '10. Optical Fiber',
+                content: 'Thin flexible transparent fiber that works on total internal reflection.<br><br><strong>Applications:</strong><ul><li>Internet communication</li><li>Medical endoscopy</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '11. Refraction Through Lens',
+                content: 'Two types:<ul><li>Convex lens</li><li>Concave lens</li></ul>'
+            },
+            {
+                type: 'formula',
+                title: '12. Lens Formula',
+                content: '<strong>Formula:</strong><div class="math-block">1/f = 1/v - 1/u</div>'
+            },
+            {
+                type: 'formula',
+                title: '13. Magnification in Lens',
+                content: '<strong>Formula:</strong><div class="math-block">m = v / u</div>'
+            },
+            {
+                type: 'formula',
+                title: '14. Power of Lens',
+                content: 'Ability of lens to converge or diverge light.<br><br><strong>Formula:</strong><div class="math-block">P = 1 / f</div>Where:<br>P = power<br>f = focal length in meter<br><br><strong>Unit:</strong><br>Dioptre (D)'
+            },
+            {
+                type: 'formula',
+                title: '15. Combination of Lenses',
+                content: '<strong>Formula:</strong><div class="math-block">P = P₁ + P₂ + P₃</div>'
+            },
+            {
+                type: 'theory',
+                title: '16. Human Eye',
+                content: '<strong>Parts:</strong><ul><li>Cornea</li><li>Iris</li><li>Pupil</li><li>Retina</li><li>Lens</li></ul><br><strong>Function:</strong><br>Forms image on retina.'
+            },
+            {
+                type: 'theory',
+                title: '17. Defects of Vision',
+                content: '<strong>A. Myopia (Short Sightedness)</strong><br>Cannot see distant objects clearly.<br><strong>Correction:</strong> Concave lens<br><br><strong>B. Hypermetropia (Long Sightedness)</strong><br>Cannot see nearby objects clearly.<br><strong>Correction:</strong> Convex lens<br><br><strong>C. Presbyopia</strong><br>Occurs due to aging.<br><strong>Correction:</strong> Bifocal lens'
+            },
+            {
+                type: 'theory',
+                title: '18. Microscope',
+                content: 'Used to see very small objects.<br><br><strong>Types:</strong><ul><li>Simple microscope</li><li>Compound microscope</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: '19. Telescope',
+                content: 'Used to see distant objects.<br><br><strong>Types:</strong><ul><li>Astronomical telescope</li><li>Reflecting telescope</li></ul>'
+            },
+            {
+                type: 'formula',
+                title: 'Important Formulae',
+                content: '<strong>Mirror Formula</strong><div class="math-block">1/f = 1/v + 1/u</div><strong>Lens Formula</strong><div class="math-block">1/f = 1/v - 1/u</div><strong>Power of Lens</strong><div class="math-block">P = 1 / f</div><strong>Refractive Index</strong><div class="math-block">n = c / v</div>'
+            },
+            {
+                type: 'numerical',
+                title: 'Solved Numerical',
+                content: '<strong>Problem</strong><br>Find power of lens having focal length 0.5 m.<br><br><strong>Solution</strong><br>Using:<div class="math-block">P = 1 / f</div><div class="step-block">P = 1 / 0.5</div><strong>Answer:</strong><br>2 D'
+            },
+            {
+                type: 'mcq',
+                title: 'MCQs',
+                content: '<strong>1. Unit of power of lens:</strong><ul><li>a) Tesla</li><li>b) Dioptre</li><li>c) Ohm</li><li>d) Watt</li></ul><strong>Answer: Dioptre</strong><br><br><strong>2. Myopia corrected using:</strong><ul><li>a) Convex lens</li><li>b) Concave lens</li><li>c) Plane mirror</li><li>d) Prism</li></ul><strong>Answer: Concave lens</strong><br><br><strong>3. Optical fiber works on:</strong><ul><li>a) Reflection</li><li>b) Refraction</li><li>c) Total internal reflection</li><li>d) Diffraction</li></ul><strong>Answer: Total internal reflection</strong>'
+            },
+            {
+                type: 'board',
+                title: 'Important Board Questions',
+                content: '<strong>1 Mark</strong><ul><li>Define refractive index.</li><li>Define power of lens.</li><li>Define total internal reflection.</li></ul><strong>2 Marks</strong><ul><li>Conditions for total internal reflection.</li><li>Difference between concave and convex mirror.</li></ul><strong>3 Marks</strong><ul><li>Explain optical fiber.</li><li>Explain defects of vision.</li></ul><strong>5 Marks</strong><ul><li>Derive lens formula.</li><li>Explain astronomical telescope.</li><li>Explain total internal reflection and applications.</li></ul>'
+            },
+            {
+                type: 'theory',
+                title: 'Quick Revision Notes & Chapter Summary',
+                content: '<strong>Quick Revision Notes</strong><ul><li>Mirror formula and lens formula are important</li><li>Power unit = Dioptre</li><li>Myopia &rarr; concave lens</li><li>Hypermetropia &rarr; convex lens</li><li>Optical fiber uses TIR</li></ul><br><strong>Chapter Summary</strong><br>This chapter explains reflection, refraction, mirrors, lenses, optical instruments, and human eye defects. These concepts are widely used in imaging systems and communication technologies.'
+            }
+        ],
+        '10th_Kannada_Shabari': [
+            {
+                type: 'info',
+                title: 'Chapter Summary',
+                content: 'Shabari is a poignant chapter detailing the devotion of Shabari towards Lord Rama. It highlights themes of patience and pure devotion.'
+            },
+            {
+                type: 'definition',
+                title: 'Important Words',
+                content: '1. Bhakti - Devotion<br>2. Pratikshe - Waiting/Patience'
+            }
+        ],
+        '10th_Mathematics_Real Numbers': [
+            {
+                type: 'definition',
+                title: 'Euclid\'s Division Lemma',
+                content: 'Given positive integers a and b, there exist unique integers q and r satisfying a = bq + r, 0 &le; r &lt; b.'
+            },
+            {
+                type: 'formula',
+                title: 'Fundamental Theorem of Arithmetic',
+                content: 'Every composite number can be expressed as a product of primes, and this factorisation is unique.'
+            }
+        ],
+        '10th_Mathematics_Polynomials': [
+            {
+                type: 'definition',
+                title: 'Zeros of a Polynomial',
+                content: 'A real number k is said to be a zero of a polynomial p(x), if p(k) = 0.'
+            },
+            {
+                type: 'formula',
+                title: 'Relationship between Zeros and Coefficients',
+                content: 'For a quadratic polynomial ax² + bx + c, <br>Sum of zeros = -b/a <br>Product of zeros = c/a'
+            }
+        ],
+        '10th_Mathematics_Quadratic Equations': [
+            {
+                type: 'formula',
+                title: 'Quadratic Formula',
+                content: 'The roots of a quadratic equation ax² + bx + c = 0 are given by x = [-b &plusmn; &radic;(b² - 4ac)] / 2a.'
+            },
+            {
+                type: 'info',
+                title: 'Discriminant',
+                content: 'The value (b² - 4ac) is called the discriminant. It determines the nature of roots (real/equal/imaginary).'
+            }
+        ],
+        '10th_Mathematics_Triangles': [
+            {
+                type: 'definition',
+                title: 'Similar Triangles',
+                content: 'Two triangles are similar if their corresponding angles are equal and their corresponding sides are in the same ratio.'
+            },
+            {
+                type: 'formula',
+                title: 'Pythagoras Theorem',
+                content: 'In a right-angled triangle, the square of the hypotenuse is equal to the sum of the squares of the other two sides.'
+            }
+        ],
+        '10th_Mathematics_Coordinate Geometry': [
+            {
+                type: 'formula',
+                title: 'Distance Formula',
+                content: 'The distance between two points P(x₁, y₁) and Q(x₂, y₂) is &radic;[(x₂ - x₁)² + (y₂ - y₁)²].'
+            },
+            {
+                type: 'formula',
+                title: 'Section Formula',
+                content: 'The coordinates of the point which divides the line segment joining (x₁, y₁) and (x₂, y₂) internally in the ratio m₁:m₂ are [(m₁x₂ + m₂x₁)/(m₁ + m₂), (m₁y₂ + m₂y₁)/(m₁ + m₂)].'
+            }
+        ]
+    },
+    
+    // Sample Practice Questions
+    practice: {
+         '12th_Physics_Electric Charges and Fields': [
+             { q: 'State Coulomb\'s Law in vector form.', type: 'Short Answer' },
+             { q: 'Derive an expression for the electric field at a point on the equatorial line of an electric dipole.', type: 'Derivation' },
+             { q: 'Two point charges q1 and q2 are located at a distance of 50 cm. Find force between them.', type: 'Numerical' }
+         ],
+         '10th_Kannada_Shabari': [
+             { q: 'Shabari rama bandaga hege santoshapattalu?', type: 'Short Answer' },
+             { q: 'Explain the moral of the story Shabari.', type: 'Long Answer' },
+             { q: 'Write the summary of the poem in your own words.', type: 'Essay' }
+         ]
+    },
+
+    // Sample Quizzes
+    quizzes: {
+        '12th_Physics_Electric Charges and Fields': [
+            {
+                q: "What is the SI unit of electric charge?",
+                options: ["Ampere", "Volt", "Coulomb", "Ohm"],
+                answer: 2
+            },
+            {
+                q: "Electric field lines always originate from:",
+                options: ["Negative charge", "Positive charge", "Infinity", "None of the above"],
+                answer: 1
+            },
+            {
+                q: "The value of absolute permittivity of free space is:",
+                options: ["8.85 x 10^-12 C^2/Nm^2", "9 x 10^9 Nm^2/C^2", "1.6 x 10^-19 C", "None"],
+                answer: 0
+            }
+        ],
+        '10th_Kannada_Shabari': [
+            {
+                q: "Who is the author of the lesson Shabari?",
+                options: ["Kuvempu", "Pu. Ti. Narasimhachar", "D. R. Bendre", "G. S. Shivarudrappa"],
+                answer: 1
+            },
+            {
+                q: "For whom was Shabari waiting?",
+                options: ["Lakshmana", "Hanuman", "Rama", "Sugriva"],
+                answer: 2
+            }
+        ]
+    },
+
+    // Past Year Question Papers
+    practice: {
+        "12th_Physics_Electric Charges and Fields": [
+                {
+                        "q": "State Coulomb\u2019s law.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define electric field intensity.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What is the SI unit of electric field?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define electric flux.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "State Gauss\u2019s theorem.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What is the permittivity of free space?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define electric dipole.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What is dipole moment?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define electric field line.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Why do electric field lines never intersect?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Distinguish between conductor and insulator.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Derive the expression for force between two point charges.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Define electric field and derive its SI unit.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Write two properties of electric field lines.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Define electric dipole moment and write its direction.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "What is electrostatic shielding?",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Explain quantization of charge.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Write applications of Gauss\u2019s theorem.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Derive the electric field due to a point charge.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Derive electric field at axial position of an electric dipole.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Derive electric field at equatorial position of an electric dipole.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "State and explain Gauss\u2019s theorem.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Derive electric field due to an infinitely long charged wire.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain the principle of superposition of charges.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Derive Coulomb\u2019s law in vector form.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Derive the expression for electric field due to uniformly charged spherical shell.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Using Gauss theorem derive electric field due to infinite plane sheet.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Explain electric dipole and derive torque acting on dipole in uniform electric field.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Derive electric field due to uniformly charged sphere.",
+                        "type": "5 Mark"
+                }
+        ],
+        "12th_Physics_Electrostatic Potential and Capacitance": [
+                {
+                        "q": "Define electric potential.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define potential difference.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What is capacitance?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "State SI unit of capacitance.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define dielectric constant.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What is equipotential surface?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Write expression for capacitance of parallel plate capacitor.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define electron volt.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What is dielectric polarization?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define electrostatic potential energy.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Distinguish between electric field and electric potential.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Write any two properties of equipotential surfaces.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Why is work done zero on equipotential surface?",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Define capacitance and derive its SI unit.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Explain effect of dielectric on capacitance.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "State factors affecting capacitance.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Differentiate series and parallel combination of capacitors.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Define potential gradient.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Derive expression for potential due to point charge.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Derive relation between electric field and potential.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Derive capacitance of parallel plate capacitor.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Obtain equivalent capacitance in series combination.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Obtain equivalent capacitance in parallel combination.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain energy stored in capacitor.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Derive expression for energy stored in capacitor.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Derive expression for capacitance of parallel plate capacitor with dielectric.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Explain equipotential surfaces with properties.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Derive relation between electric field and potential.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Derive equivalent capacitance for series and parallel combinations.",
+                        "type": "5 Mark"
+                }
+        ],
+        "12th_Physics_Current Electricity": [
+                {
+                        "q": "State Ohm\u2019s law.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define electric current.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What is drift velocity?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define resistance.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What is resistivity?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "State Kirchhoff\u2019s current law.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "State Kirchhoff\u2019s voltage law.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define emf of cell.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What is internal resistance?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define electrical power.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Differentiate emf and potential difference.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "State limitations of Ohm\u2019s law.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Define conductivity and resistivity.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Explain temperature dependence of resistance.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "State Kirchhoff\u2019s laws.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Differentiate series and parallel combination of resistors.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Define mobility of electrons.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Explain colour code of resistor.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Derive relation between current and drift velocity.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Derive expression for electrical conductivity.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Derive combination of resistors in series.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Derive combination of resistors in parallel.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain Wheatstone bridge principle.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain metre bridge with diagram.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Derive expression for drift velocity.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Explain and derive Wheatstone bridge condition.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Derive relation between current density and drift velocity.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Explain potentiometer and its applications.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Compare emf of two cells using potentiometer.",
+                        "type": "5 Mark"
+                }
+        ],
+        "12th_Physics_Moving Charges and Magnetism": [
+                {
+                        "q": "State Biot\u2013Savart law.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "State Ampere\u2019s circuital law.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define magnetic field.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What is Lorentz force?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define cyclotron.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "State Fleming\u2019s left hand rule.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define magnetic dipole moment.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What is radius of cyclotron motion?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define torque on current loop.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Write SI unit of magnetic field.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "State properties of magnetic field lines.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Differentiate electric and magnetic fields.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Explain force on moving charge in magnetic field.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Write applications of cyclotron.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Explain motion of charged particle parallel to magnetic field.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Explain motion of charged particle perpendicular to magnetic field.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Define ampere.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "State Fleming\u2019s left hand rule with application.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Derive magnetic field due to long straight conductor.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Derive force between two parallel current carrying conductors.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain working of cyclotron.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Derive torque on current carrying loop.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain moving coil galvanometer.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Derive magnetic field at centre of circular loop.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Derive Biot\u2013Savart law for circular current loop.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Derive magnetic field on axis of circular loop.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Explain construction and working of cyclotron with limitations.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Explain moving coil galvanometer and conversion into ammeter and voltmeter.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Derive force on current carrying conductor in magnetic field.",
+                        "type": "5 Mark"
+                }
+        ],
+        "12th_Physics_Magnetism and Matter": [
+                {
+                        "q": "Define magnetic declination.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define magnetic inclination.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What is magnetic dipole moment?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define magnetic susceptibility.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What are diamagnetic materials?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What are paramagnetic materials?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What are ferromagnetic materials?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define retentivity.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define coercivity.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "State Curie law.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Differentiate dia, para and ferromagnetic materials.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Explain magnetic inclination.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "State properties of magnetic field lines.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Define hysteresis.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Explain magnetic elements of earth.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Write uses of permanent magnets.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Explain soft iron and steel magnetic properties.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Define magnetic permeability.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Explain earth\u2019s magnetism.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain hysteresis curve.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Compare dia, para and ferromagnetic substances.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain tangent galvanometer.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain vibration magnetometer.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Discuss magnetic properties of materials.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain hysteresis loop with applications.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Derive relation between angle of dip and earth\u2019s magnetic field components.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Explain magnetic elements of earth in detail.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Compare dia, para and ferromagnetism in detail.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Explain Gauss theorem in magnetism.",
+                        "type": "5 Mark"
+                }
+        ],
+        "12th_Physics_Electromagnetic Induction": [
+                {
+                        "q": "State Faraday\u2019s laws of electromagnetic induction.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "State Lenz\u2019s law.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define magnetic flux.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define self inductance.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define mutual inductance.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What is eddy current?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define inductance.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "State SI unit of inductance.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What is AC generator?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define induced emf.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Explain Lenz\u2019s law.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Define self and mutual induction.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "What are eddy currents?",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Explain causes of induced emf.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Differentiate self and mutual induction.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "State applications of eddy currents.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Define magnetic flux and write SI unit.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Explain electromagnetic braking.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Derive expression for motional emf.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain AC generator with diagram.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain eddy currents with applications.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Derive expression for self inductance of solenoid.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain Faraday\u2019s laws.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain Fleming\u2019s right hand rule.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain construction and working of AC generator.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Derive expression for induced emf in rotating coil.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Explain self inductance and derive expression for solenoid.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Derive motional emf expression.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Explain electromagnetic induction with Faraday\u2019s laws and Lenz law.",
+                        "type": "5 Mark"
+                }
+        ],
+        "12th_Physics_Alternating Current": [
+                {
+                        "q": "Define alternating current.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define RMS value of AC.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define peak value of AC.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What is reactance?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define impedance.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define resonance.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What is power factor?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Write SI unit of reactance.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define choke coil.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What is transformer?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Differentiate AC and DC.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Explain RMS value of AC.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Define capacitive and inductive reactance.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "State advantages of AC over DC.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Explain power factor.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Define resonance in LCR circuit.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "State functions of transformer.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Explain wattless current.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Derive expression for RMS value of AC.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain series LCR circuit.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain phasor diagram for LR circuit.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain phasor diagram for RC circuit.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain transformer with principle.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Derive expression for capacitive reactance.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain series LCR circuit and resonance.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Derive expression for current in AC circuit.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Explain transformer with construction and working.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Derive expression for inductive reactance.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Explain power in AC circuit.",
+                        "type": "5 Mark"
+                }
+        ],
+        "12th_Physics_Electromagnetic Waves": [
+                {
+                        "q": "Who discovered electromagnetic waves?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "State relation between electric and magnetic fields in EM waves.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define displacement current.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What are electromagnetic waves?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Write speed of EM waves in vacuum.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "What are microwaves?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define wavelength.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Define frequency.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Which waves are used in remote control?",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "Name the wave used in communication satellites.",
+                        "type": "1 Mark"
+                },
+                {
+                        "q": "State properties of electromagnetic waves.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Explain displacement current.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Write applications of microwaves.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Compare electric and magnetic fields in EM waves.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "State uses of infrared rays.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "State uses of ultraviolet rays.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Explain electromagnetic spectrum.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Write uses of X-rays.",
+                        "type": "2 Mark"
+                },
+                {
+                        "q": "Explain electromagnetic spectrum.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Write properties and uses of EM waves.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain production of electromagnetic waves.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain Hertz experiment.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Discuss applications of radio waves.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain uses of gamma rays.",
+                        "type": "3 Mark"
+                },
+                {
+                        "q": "Explain electromagnetic spectrum with applications.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Explain Maxwell\u2019s theory of electromagnetic waves.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Discuss properties, production and uses of electromagnetic waves.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Explain displacement current and significance.",
+                        "type": "5 Mark"
+                },
+                {
+                        "q": "Compare different regions of electromagnetic spectrum.",
+                        "type": "5 Mark"
+                }
+        ]
+},
+
+    pyqs: {
+        '12th_Physics': [
+            { year: '2024-25 (Model Paper)', link: 'paper_2024.html' },
+            { year: '2023', link: '#' },
+            { year: '2022', link: '#' },
+            { year: '2021', link: '#' },
+            { year: '2020', link: '#' },
+            { year: '2019', link: '#' }
+        ],
+        '10th_Mathematics': [
+            { year: '2023', link: '#' },
+            { year: '2022', link: '#' },
+            { year: '2021', link: '#' },
+            { year: '2020', link: '#' },
+            { year: '2019', link: '#' }
+        ]
+    }
+};
+
+</script>
+    <script>
+// Core App Logic for Student Hub
+
+// State
+let currentUser = {
+    name: '',
+    board: '',
+    standard: ''
+};
+
+let currentQuiz = {
+    questions: [],
+    currentQuestionIndex: 0,
+    score: 0,
+    timer: null,
+    timeLeft: 600 // 10 mins
+};
+
+// DOM Elements
+const onboardingModal = document.getElementById('onboarding-modal');
+const displayName = document.getElementById('display-name');
+const heroUserName = document.getElementById('hero-user-name');
+
+// 2. Logic that runs every time the page loads/refreshes
+window.onload = function() {
+    const loggedIn = sessionStorage.getItem('isLoggedIn');
+    
+    if (loggedIn === 'true') {
+        // If they are logged in, hide the modal and load state
+        onboardingModal.style.display = 'none';
+        
+        currentUser.name = sessionStorage.getItem('studentName');
+        currentUser.board = sessionStorage.getItem('studentBoard') || '';
+        currentUser.standard = sessionStorage.getItem('studentStandard') || '10th';
+        
+        displayName.innerText = currentUser.name.split(' ')[0];
+        if (heroUserName) heroUserName.textContent = currentUser.name;
+        
+        navigateTo('home');
+    } else {
+        // If not logged in, show the modal
+        onboardingModal.style.display = 'flex';
+    }
+};
+
+// 1. Function to save user data and hide modal
+function saveUser() {
+    const name = document.getElementById('user-name').value;
+    const state = document.getElementById('user-state').value;
+    const rawClass = document.getElementById('user-class').value;
+    
+    if (name && state && rawClass) {
+        sessionStorage.setItem('isLoggedIn', 'true');
+        sessionStorage.setItem('studentName', name);
+        sessionStorage.setItem('studentBoard', state);
+        
+        // Parse class to 10th or 12th for our db
+        const std = (rawClass.includes('12')) ? '12th' : '10th';
+        sessionStorage.setItem('studentStandard', std);
+        
+        currentUser.name = name;
+        currentUser.board = state;
+        currentUser.standard = std;
+        
+        onboardingModal.style.display = 'none';
+        displayName.innerText = name.split(' ')[0];
+        if (heroUserName) heroUserName.textContent = name;
+        
+        navigateTo('home');
+    } else {
+        alert("Please fill in all fields (Name, State, and Standard)!");
+    }
+}
+
+// 3. Global Initializations
+document.addEventListener('DOMContentLoaded', () => {
+    // Logout Menu Toggle
+    document.querySelector('.profile-container').addEventListener('click', function(e) {
+        if (e.target.tagName !== 'BUTTON') {
+            const menu = document.getElementById('logout-menu');
+            menu.style.display = (menu.style.display === 'none' || menu.style.display === '') ? 'block' : 'none';
+        }
+    });
+
+    initGlobalSearch();
+});
+
+// 4. Logout function
+function logout() {
+    sessionStorage.clear(); // This deletes the saved data
+    location.reload();      // This refreshes the page
+}
+
+function navigateTo(route) {
+    // Hide all pages
+    document.querySelectorAll('.dashboard-content .page').forEach(page => {
+        page.classList.add('hidden');
+    });
+    
+    // Update active nav link
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.dataset.route === route) {
+            link.classList.add('active');
+        }
+    });
+
+    // Show selected page
+    const pageId = `${route}-page`;
+    document.getElementById(pageId).classList.remove('hidden');
+
+    // Page specific initializations
+    if (route === 'videos') initVideosPage();
+    if (route === 'notes') initNotesPage();
+    if (route === 'practice') initPracticePage();
+    if (route === 'quiz') initQuizPage();
+    if (route === 'pyqs') initPYQsPage();
+}
+
+// --- Videos Page Logic ---
+function initVideosPage() {
+    const container = document.getElementById('videos-container');
+    const filter = document.getElementById('video-subject-filter');
+    
+    // Populate filter based on standard
+    const subjects = db.standards[currentUser.standard].subjects;
+    filter.innerHTML = '<option value="all">All Subjects</option>';
+    subjects.forEach(sub => {
+        filter.innerHTML += `<option value="${sub}">${sub}</option>`;
+    });
+
+    renderVideos('all');
+
+    filter.addEventListener('change', (e) => {
+        renderVideos(e.target.value);
+    });
+}
+
+function renderVideos(subjectFilter) {
+    const container = document.getElementById('videos-container');
+    container.innerHTML = '';
+    
+    // Generate dummy videos based on standard and subjects if no db entries match exactly
+    const subjectsToRender = subjectFilter === 'all' ? db.standards[currentUser.standard].subjects : [subjectFilter];
+    
+    // Realistic mock data representing the user's intended links
+    const facultyVideos = [
+        { channel: "Physics Wallah", bg: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80" },
+        { channel: "Unacademy", bg: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80" },
+        { channel: "BYJU'S", bg: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80" }
+    ];
+
+    subjectsToRender.forEach(subject => {
+        const chapters = db.chapters[currentUser.standard][subject] || ['Introductory Chapter'];
+        // Generate video cards for all chapters
+        chapters.forEach((chapter, index) => {
+            const faculty = facultyVideos[(index + subject.length) % facultyVideos.length];
+            
+            // Automatically generate a search query for the exact chapter and faculty!
+            const searchQuery = encodeURIComponent(`${faculty.channel} ${currentUser.standard} ${subject} ${chapter} full lecture`);
+            const ytLink = `https://www.youtube.com/results?search_query=${searchQuery}`;
+
+            const card = document.createElement('div');
+            card.className = 'glass-card video-card';
+            card.innerHTML = `
+                <a href="${ytLink}" target="_blank" class="video-thumbnail" style="display: block; text-decoration: none; position: relative; background: #000; overflow: hidden; padding-top: 56.25%;">
+                    <img src="${faculty.bg}" alt="${faculty.channel} Thumbnail" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: all 0.3s ease;">
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.3);">
+                        <i class="fa-brands fa-youtube play-icon" style="font-size: 3.5rem; color: #ff0000; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5)); transition: transform 0.3s ease;"></i>
+                    </div>
+                </a>
+                <div class="video-info">
+                    <span class="channel-tag" style="background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple)); color: white; border-radius: 4px; padding: 0.4rem 0.8rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px;">${faculty.channel}</span>
+                    <h3 style="margin-top: 12px; font-size: 1.2rem;">${subject}: ${chapter}</h3>
+                    <p>Click to automatically find the best lecture for this chapter on YouTube.</p>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    });
+}
+
+// --- Notes & Practice Shared Sidebar Logic ---
+function renderSidebar(pagePrefix, onClickCallback) {
+    const subjectList = document.getElementById(`${pagePrefix}-subject-list`);
+    subjectList.innerHTML = '';
+    
+    const subjects = db.standards[currentUser.standard].subjects;
+    subjects.forEach((subject, index) => {
+        const li = document.createElement('li');
+        li.className = 'sidebar-item';
+        if (index === 0) li.classList.add('active');
+        li.textContent = subject;
+        li.onclick = () => {
+            document.querySelectorAll(`#${pagePrefix}-subject-list .sidebar-item`).forEach(el => el.classList.remove('active'));
+            li.classList.add('active');
+            onClickCallback(subject);
+        };
+        subjectList.appendChild(li);
+    });
+    
+    // Trigger first item
+    if (subjects.length > 0) {
+        onClickCallback(subjects[0]);
+    }
+}
+
+// --- Notes Page Logic ---
+function initNotesPage() {
+    renderSidebar('notes', renderNotesContent);
+}
+
+function renderNotesContent(subject) {
+    const contentArea = document.getElementById('notes-content-area');
+    contentArea.innerHTML = `<h3>${subject} Notes</h3><p class="text-muted" style="margin-bottom: 2rem;">Select a chapter to expand notes.</p>`;
+    
+    const chapters = db.chapters[currentUser.standard][subject] || [];
+    
+    if (chapters.length === 0) {
+        contentArea.innerHTML += `<div class="placeholder-msg">No chapters found for this subject.</div>`;
+        return;
+    }
+
+    chapters.forEach(chapter => {
+        const key = `${currentUser.standard}_${subject}_${chapter}`;
+        const chapterNotes = db.notes[key] || [
+            { type: 'info', title: 'Chapter Summary', content: 'Detailed notes for this chapter are coming soon. Stay tuned!' }
+        ];
+
+        let notesHtml = '';
+        chapterNotes.forEach(note => {
+            let iconClass = 'fa-solid fa-book-open';
+            let noteClass = 'note-theory';
+            
+            if (note.type === 'theory' || note.type === 'info') { iconClass = 'fa-solid fa-book-open'; noteClass = 'note-theory'; }
+            else if (note.type === 'formula' || note.type === 'definition') { iconClass = 'fa-solid fa-square-root-variable'; noteClass = 'note-formula'; }
+            else if (note.type === 'derivation') { iconClass = 'fa-solid fa-pen-ruler'; noteClass = 'note-derivation'; }
+            else if (note.type === 'numerical') { iconClass = 'fa-solid fa-calculator'; noteClass = 'note-numerical'; }
+            else if (note.type === 'mcq') { iconClass = 'fa-solid fa-list-check'; noteClass = 'note-mcq'; }
+            else if (note.type === 'board') { iconClass = 'fa-solid fa-award'; noteClass = 'note-board'; }
+
+            notesHtml += `
+                <div class="note-box ${noteClass}">
+                    <div class="note-header">
+                        <i class="${iconClass}"></i>
+                        <h4>${note.title}</h4>
+                    </div>
+                    <div class="note-content">
+                        ${note.content}
+                    </div>
+                </div>
+            `;
+        });
+
+        const card = document.createElement('div');
+        card.className = 'glass-card chapter-card';
+        card.innerHTML = `
+            <div class="chapter-header" onclick="this.parentElement.classList.toggle('expanded')">
+                <h3>${chapter}</h3>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="chapter-content">
+                ${notesHtml}
+            </div>
+        `;
+        contentArea.appendChild(card);
+    });
+}
+
+// --- Practice Page Logic ---
+function initPracticePage() {
+    renderSidebar('practice', renderPracticeContent);
+}
+
+function renderPracticeContent(subject) {
+    const contentArea = document.getElementById('practice-content-area');
+    contentArea.innerHTML = `<h3>${subject} Practice Questions</h3><br>`;
+    
+    const chapters = db.chapters[currentUser.standard][subject] || [];
+    
+    chapters.forEach(chapter => {
+        const key = `${currentUser.standard}_${subject}_${chapter}`;
+        const questions = db.practice[key] || [
+            { q: 'Sample question 1 for practice.', type: 'General' },
+            { q: 'Sample question 2 for practice.', type: 'General' }
+        ];
+
+        let qHtml = '<ul style="list-style-type: none; padding-left: 0;">';
+        questions.forEach((item, i) => {
+            qHtml += `
+                <li style="margin-bottom: 1rem; padding: 1rem; background: rgba(255,255,255,0.03); border-radius: 10px; border-left: 3px solid var(--accent-green);">
+                    <div style="font-size: 0.8rem; color: var(--accent-green); margin-bottom: 0.5rem;">${item.type}</div>
+                    Q${i+1}. ${item.q}
+                </li>
+            `;
+        });
+        qHtml += '</ul>';
+
+        const card = document.createElement('div');
+        card.className = 'glass-card chapter-card';
+        card.innerHTML = `
+            <div class="chapter-header" onclick="this.parentElement.classList.toggle('expanded')">
+                <h3>${chapter}</h3>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="chapter-content">
+                ${qHtml}
+            </div>
+        `;
+        contentArea.appendChild(card);
+    });
+}
+
+// --- Quiz Logic ---
+function initQuizPage() {
+    document.getElementById('quiz-setup').classList.remove('hidden');
+    document.getElementById('quiz-active').classList.add('hidden');
+    document.getElementById('quiz-results').classList.add('hidden');
+
+    const subjectSelect = document.getElementById('quiz-subject');
+    const chapterSelect = document.getElementById('quiz-chapter');
+    const startBtn = document.getElementById('start-quiz-btn');
+
+    // Populate Subjects
+    subjectSelect.innerHTML = '<option value="" disabled selected>Choose Subject</option>';
+    db.standards[currentUser.standard].subjects.forEach(sub => {
+        subjectSelect.innerHTML += `<option value="${sub}">${sub}</option>`;
+    });
+
+    subjectSelect.addEventListener('change', (e) => {
+        const subject = e.target.value;
+        chapterSelect.innerHTML = '<option value="" disabled selected>Choose Chapter</option>';
+        const chapters = db.chapters[currentUser.standard][subject] || [];
+        chapters.forEach(chap => {
+            chapterSelect.innerHTML += `<option value="${chap}">${chap}</option>`;
+        });
+        chapterSelect.disabled = false;
+        startBtn.disabled = true;
+    });
+
+    chapterSelect.addEventListener('change', () => {
+        startBtn.disabled = false;
+    });
+
+    startBtn.onclick = () => {
+        const subject = subjectSelect.value;
+        const chapter = chapterSelect.value;
+        startQuiz(subject, chapter);
+    };
+}
+
+function startQuiz(subject, chapter) {
+    const key = `${currentUser.standard}_${subject}_${chapter}`;
+    // Load questions or fallback to generic
+    currentQuiz.questions = db.quizzes[key] || [
+        { q: "This is a sample generated question for " + chapter, options: ["Option A", "Option B", "Option C", "Option D"], answer: 0 },
+        { q: "What is the primary focus of this chapter?", options: ["Introduction", "Advanced Concepts", "Practical Application", "All of the above"], answer: 3 },
+        { q: "Choose the correct statement:", options: ["Statement 1 is true", "Statement 2 is false", "Both are true", "None"], answer: 2 }
+    ];
+    
+    currentQuiz.currentQuestionIndex = 0;
+    currentQuiz.score = 0;
+    currentQuiz.timeLeft = 600;
+
+    document.getElementById('quiz-title').textContent = `${subject} - ${chapter}`;
+    document.getElementById('quiz-setup').classList.add('hidden');
+    document.getElementById('quiz-active').classList.remove('hidden');
+
+    startTimer();
+    renderQuestion();
+}
+
+function startTimer() {
+    clearInterval(currentQuiz.timer);
+    const timeDisplay = document.getElementById('time-left');
+    
+    currentQuiz.timer = setInterval(() => {
+        currentQuiz.timeLeft--;
+        const m = Math.floor(currentQuiz.timeLeft / 60).toString().padStart(2, '0');
+        const s = (currentQuiz.timeLeft % 60).toString().padStart(2, '0');
+        timeDisplay.textContent = `${m}:${s}`;
+        
+        if (currentQuiz.timeLeft <= 0) {
+            endQuiz();
+        }
+    }, 1000);
+}
+
+function renderQuestion() {
+    const qIndex = currentQuiz.currentQuestionIndex;
+    const qData = currentQuiz.questions[qIndex];
+    
+    document.getElementById('quiz-question-count').textContent = `Question ${qIndex + 1}/${currentQuiz.questions.length}`;
+    document.getElementById('quiz-progress').style.width = `${((qIndex) / currentQuiz.questions.length) * 100}%`;
+
+    const container = document.getElementById('question-container');
+    container.innerHTML = `
+        <div class="question-text">${qData.q}</div>
+        <div class="options-grid">
+            ${qData.options.map((opt, i) => `
+                <button class="option-btn" onclick="selectOption(${i})">${String.fromCharCode(65 + i)}. ${opt}</button>
+            `).join('')}
+        </div>
+        <div class="quiz-actions hidden" id="quiz-actions">
+            <button class="btn-primary" onclick="nextQuestion()" style="width: auto; padding: 0.8rem 2rem;">Next Question <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    `;
+}
+
+function selectOption(selectedIndex) {
+    const qData = currentQuiz.questions[currentQuiz.currentQuestionIndex];
+    const buttons = document.querySelectorAll('.option-btn');
+    const actions = document.getElementById('quiz-actions');
+    
+    // Disable all buttons
+    buttons.forEach(btn => btn.disabled = true);
+    
+    if (selectedIndex === qData.answer) {
+        buttons[selectedIndex].classList.add('correct');
+        currentQuiz.score++;
+    } else {
+        buttons[selectedIndex].classList.add('wrong');
+        buttons[qData.answer].classList.add('correct');
+    }
+    
+    actions.classList.remove('hidden');
+    
+    if (currentQuiz.currentQuestionIndex === currentQuiz.questions.length - 1) {
+        actions.innerHTML = `<button class="btn-primary" onclick="endQuiz()" style="width: auto; padding: 0.8rem 2rem; background: var(--accent-green);">Finish Quiz <i class="fa-solid fa-flag-checkered"></i></button>`;
+    }
+}
+
+function nextQuestion() {
+    currentQuiz.currentQuestionIndex++;
+    renderQuestion();
+}
+
+function endQuiz() {
+    clearInterval(currentQuiz.timer);
+    
+    document.getElementById('quiz-active').classList.add('hidden');
+    document.getElementById('quiz-results').classList.remove('hidden');
+    
+    const total = currentQuiz.questions.length;
+    const correct = currentQuiz.score;
+    const wrong = total - correct;
+    const percentage = Math.round((correct / total) * 100);
+    
+    document.getElementById('result-score').textContent = `${percentage}%`;
+    document.getElementById('correct-count').textContent = correct;
+    document.getElementById('wrong-count').textContent = wrong;
+    
+    const resultText = document.getElementById('result-text');
+    if (percentage >= 80) resultText.textContent = "Excellent!";
+    else if (percentage >= 60) resultText.textContent = "Good Job!";
+    else resultText.textContent = "Keep Practicing!";
+}
+
+function resetQuiz() {
+    initQuizPage();
+}
+
+// --- PYQs Page Logic ---
+function initPYQsPage() {
+    renderSidebar('pyqs', renderPYQsContent);
+}
+
+function renderPYQsContent(subject) {
+    const contentArea = document.getElementById('pyqs-content-area');
+    contentArea.innerHTML = `<h3>${subject} - Previous Year Papers</h3><p class="text-muted" style="margin-bottom: 2rem;">Select a year to view the previous year question paper.</p>`;
+    
+    // Check if there are PYQs for this subject in db, else use placeholders
+    const key = `${currentUser.standard}_${subject}`;
+    let papers = db.pyqs && db.pyqs[key] ? db.pyqs[key] : [];
+    
+    if (papers.length === 0) {
+        // Generate 5 dummy past papers since data doesn't exist in db
+        const currentYear = new Date().getFullYear();
+        for (let i = 1; i <= 5; i++) {
+            papers.push({
+                year: currentYear - i,
+                link: '#'
+            });
+        }
+    }
+
+    let papersHtml = '';
+    papers.forEach(paper => {
+        papersHtml += `
+            <a href="${paper.link}" target="_blank" class="glass-card" style="display: flex; align-items: center; padding: 1.5rem; margin-bottom: 1rem; text-decoration: none; color: inherit; transition: transform 0.2s;">
+                <i class="fa-solid fa-file-pdf" style="font-size: 2rem; color: #ff5252; margin-right: 1.5rem;"></i>
+                <div>
+                    <h4 style="margin: 0; font-size: 1.2rem;">${subject} Board Paper ${paper.year}</h4>
+                    <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">Click to download/view PDF</p>
+                </div>
+                <i class="fa-solid fa-download" style="margin-left: auto; color: var(--primary-blue);"></i>
+            </a>
+        `;
+    });
+
+    contentArea.innerHTML += papersHtml;
+}
+
+// --- Global Search Logic ---
+function initGlobalSearch() {
+    const searchInput = document.getElementById('global-search');
+    const searchResults = document.getElementById('global-search-results');
+
+    if (!searchInput || !searchResults) return;
+
+    // Hide dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.global-search-container')) {
+            searchResults.classList.add('hidden');
+        }
+    });
+
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        
+        if (query.length < 2) {
+            searchResults.classList.add('hidden');
+            return;
+        }
+
+        const standard = currentUser.standard || '10th';
+        const subjectsData = db.chapters[standard] || {};
+        
+        let matches = [];
+
+        // Search through chapters
+        for (const [subject, chapters] of Object.entries(subjectsData)) {
+            chapters.forEach(chapter => {
+                if (chapter.toLowerCase().includes(query) || subject.toLowerCase().includes(query)) {
+                    matches.push({ subject, chapter });
+                }
+            });
+        }
+
+        renderSearchResults(matches);
+    });
+}
+
+function renderSearchResults(matches) {
+    const searchResults = document.getElementById('global-search-results');
+    searchResults.innerHTML = '';
+
+    if (matches.length === 0) {
+        searchResults.innerHTML = '<div style="padding: 1rem; color: var(--text-muted); text-align: center;">No matching chapters found.</div>';
+        searchResults.classList.remove('hidden');
+        return;
+    }
+
+    // Limit to top 10 results for performance
+    const topMatches = matches.slice(0, 10);
+
+    topMatches.forEach(match => {
+        const item = document.createElement('div');
+        item.className = 'search-result-item';
+
+        const titleEl = document.createElement('div');
+        titleEl.className = 'search-result-title';
+        titleEl.textContent = match.chapter;
+
+        const subjectEl = document.createElement('div');
+        subjectEl.className = 'search-result-subject';
+        subjectEl.innerHTML = `<i class="fa-solid fa-book-open"></i> ${match.subject}`;
+
+        const actions = document.createElement('div');
+        actions.className = 'search-actions';
+
+        ['notes', 'videos', 'practice'].forEach(actionType => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'search-action-btn';
+            btn.textContent = actionType.charAt(0).toUpperCase() + actionType.slice(1);
+            btn.addEventListener('click', () => executeSearchAction(actionType, match.subject, match.chapter));
+            actions.appendChild(btn);
+        });
+
+        item.appendChild(titleEl);
+        item.appendChild(subjectEl);
+        item.appendChild(actions);
+        searchResults.appendChild(item);
+    });
+
+    searchResults.classList.remove('hidden');
+}
+
+window.executeSearchAction = function(type, subject, chapter) {
+    // Hide search dropdown and clear input
+    document.getElementById('global-search-results').classList.add('hidden');
+    document.getElementById('global-search').value = '';
+
+    navigateTo(type);
+
+    setTimeout(() => {
+        if (type === 'notes' || type === 'practice') {
+            const listItems = document.querySelectorAll(`#${type}-subject-list .sidebar-item`);
+            listItems.forEach(li => {
+                if (li.textContent.trim() === subject) {
+                    li.click(); // Renders the content for this subject
+                    
+                    // Wait a bit for DOM to update
+                    setTimeout(() => {
+                        const headers = document.querySelectorAll('.chapter-header h3');
+                        headers.forEach(h3 => {
+                            if (h3.textContent.trim() === chapter) {
+                                const card = h3.parentElement;
+                                if (!card.parentElement.classList.contains('expanded')) {
+                                    card.click(); // Expand the card
+                                }
+                                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                
+                                // Temporary highlight effect
+                                card.parentElement.style.boxShadow = '0 0 20px var(--primary-purple)';
+                                setTimeout(() => card.parentElement.style.boxShadow = '', 2000);
+                            }
+                        });
+                    }, 100);
+                }
+            });
+        } else if (type === 'videos') {
+            const filter = document.getElementById('video-subject-filter');
+            if (filter) {
+                filter.value = subject;
+                renderVideos(subject);
+                
+                // Highlight the specific video cards for the chapter
+                setTimeout(() => {
+                    const titles = document.querySelectorAll('.video-info h3');
+                    titles.forEach(h3 => {
+                        if (h3.textContent.includes(chapter)) {
+                            const card = h3.closest('.video-card');
+                            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            card.style.boxShadow = '0 0 20px var(--primary-purple)';
+                            setTimeout(() => card.style.boxShadow = '', 2000);
+                        }
+                    });
+                }, 100);
+            }
+        }
+    }, 150);
+};
+
+</script>
+</body>
+</html>
